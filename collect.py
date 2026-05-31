@@ -125,7 +125,7 @@ def parse_vless_link(link, index):
 
 
 # ====================== Генерация ======================
-url = "https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6.txt"
+url = "https://github.com/terik21/HiddifySubs-VlessKeys/raw/refs/heads/main/WhiteKeys"
 
 print("Скачиваем kizyakbeta6.txt...")
 response = requests.get(url)
