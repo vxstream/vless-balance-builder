@@ -209,9 +209,9 @@ config = {
   }
 }
 
-with open("kizyak_vless_balancer.json", "w", encoding="utf-8") as f:
+with open("main.json", "w", encoding="utf-8") as f:
     json.dump(config, f, ensure_ascii=False, indent=2)
 
 print("✅ Готово!")
-print(f"Сохранено в: kizyak_vless_balancer.json")
+print(f"Сохранено в: main.json")
 print(f"Серверов в балансере: {len(vless_tags)}")
