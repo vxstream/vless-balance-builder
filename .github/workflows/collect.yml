@@ -32,6 +32,16 @@ jobs:
       - name: Run collector (NL ONLY)
         run: python collect.py -f subscriptions.txt -o NL.json --require-remark --include-flags NL
 
+      - name: Run collector (SG ONLY)
+        run: python collect.py -f subscriptions.txt -o SG.json --require-remark --include-flags SG
+
+      - name: Run collector (US ONLY)
+        run: python collect.py -f subscriptions.txt -o US.json --require-remark --include-flags US
+        
+      - name: Run collector (SE ONLY)
+        run: python collect.py -f subscriptions.txt -o SE.json --require-remark --include-flags SE
+
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
