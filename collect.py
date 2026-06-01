@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """
 ║
-║           VLESS Config Builder for Xray/V2Ray                   
-║                                                                  
-║  Собирает VLESS-конфиги из нескольких подписок,                 
-║  генерирует единый JSON с балансировкой нагрузки.               
-║                                                                  
+║           VLESS Config Builder for Xray/V2Ray
+║
+║  Собирает VLESS-конфиги из нескольких подписок,
+║  генерирует единый JSON с балансировкой нагрузки.
+║
+║  Включает обход РКН/ТСПУ: фрагментация, noise, mux,
+║  маскировка под легитимный трафик (браузер, стриминг).
+║
 ║  GitHub: https://github.com/vxstream/vless-balance-builder
-║  License: MIT                                                    
+║  License: MIT
 ║
 """
 
@@ -20,6 +23,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlparse
 
 # ─── Зависимости ────────────────────────────────────────────────────────────
+
 try:
     import requests
 except ImportError:
@@ -29,81 +33,83 @@ except ImportError:
     )
 
 # ─── Константы ──────────────────────────────────────────────────────────────
-VERSION = "1.3.0"
-DEFAULT_OUTPUT = "main.json"
+
+VERSION         = "2.0.0"
+DEFAULT_OUTPUT  = "main.json"
 REQUEST_TIMEOUT = 15
 REQUEST_RETRIES = 3
 RETRY_DELAY     = 2
 
+# ── Фрагментация (anti-DPI/ТСПУ) ────────────────────────────────────────────
+# tlshello — фрагментирует только TLS Client Hello (рекомендуется)
+# 1-3      — первые 1-3 TCP-сегмента
+FRAGMENT_ENABLED  = True
+FRAGMENT_PACKETS  = "tlshello"
+FRAGMENT_LENGTH   = "100-200"
+FRAGMENT_INTERVAL = "10-20"
+
+# ── Noise (мусорные пакеты до handshake, сбивает ТСПУ-классификаторы) ───────
+# base64-строка произвольного "шума", который клиент шлёт перед TLS
+# rand — случайные байты нужной длины (рекомендуется для мобильных сетей)
+NOISE_ENABLED = True
+NOISE_TYPE    = "rand"       # rand | str | base64
+NOISE_PACKET  = "10-20"      # длина в байтах (для rand) или сама строка
+NOISE_DELAY   = "5-10"       # задержка в мс между noise-пакетами
+
+# ── Mux (мультиплексирование — снижает количество TLS handshake'ов) ─────────
+MUX_ENABLED     = True
+MUX_CONCURRENCY = 8          # потоков на одно соединение
+MUX_XUDP_CONCURRENCY = 16
+MUX_XUDP_PROXY_UDP310 = True # h2mux совместимость
+
+# ── Fingerprint браузера (для маскировки под легитимный HTTPS) ───────────────
+# chrome / firefox / safari / ios / android / edge / random
+# random — каждый раз новый, затрудняет fingerprinting ТСПУ
+DEFAULT_FINGERPRINT = "random"
+
+# ── DNS (используем зарубежный DoH чтобы не словить DNS-блок) ───────────────
+DNS_SERVERS = [
+    "https://1.1.1.1/dns-query",   # Cloudflare DoH
+    "https://8.8.8.8/dns-query",   # Google DoH
+    "localhost:7874",               # локальный fallback
+]
+DNS_QUERY_STRATEGY = "UseIPv4"
+
 # ─── ANSI-цвета ─────────────────────────────────────────────────────────────
+
 USE_COLOR = sys.stdout.isatty()
 
 def _c(code: str, text: str) -> str:
     return f"\033[{code}m{text}\033[0m" if USE_COLOR else text
 
-def green(t):  return _c("32", t)
-def yellow(t): return _c("33", t)
-def red(t):    return _c("31", t)
-def cyan(t):   return _c("36", t)
-def bold(t):   return _c("1",  t)
-def dim(t):    return _c("2",  t)
+def green(t):   return _c("32", t)
+def yellow(t):  return _c("33", t)
+def red(t):     return _c("31", t)
+def cyan(t):    return _c("36", t)
+def bold(t):    return _c("1",  t)
+def dim(t):     return _c("2",  t)
 def magenta(t): return _c("35", t)
 
-
 # ════════════════════════════════════════════════════════════════════════════
-#   УТИЛИТЫ ДЛЯ РАБОТЫ С РЕМАРКАМИ / ФЛАГАМИ
+# УТИЛИТЫ ДЛЯ РАБОТЫ С РЕМАРКАМИ / ФЛАГАМИ
 # ════════════════════════════════════════════════════════════════════════════
 
 def extract_remark(link: str) -> str:
-    """
-    Извлекает ремарку из VLESS-ссылки.
-    Ремарка — это фрагмент после «#» в URL.
-    Возвращает пустую строку, если ремарки нет.
-
-    Пример:
-        vless://uuid@host:443?...#🇩🇪 DE | Server 1
-        → '🇩🇪 DE | Server 1'
-    """
     if "#" not in link:
         return ""
     return unquote(link.split("#", 1)[1]).strip()
 
-
 def extract_flags(remark: str) -> list[str]:
-    """
-    Извлекает «флаги» из ремарки.
-
-    Флагом считается любое слово или эмодзи-последовательность,
-    разделённые пробелами, «|», «-», «_».
-    Возвращает список флагов в нижнем регистре (для сравнения без учёта регистра).
-
-    Примеры:
-        '🇩🇪 DE | Server 1'  → ['🇩🇪', 'de', 'server', '1']
-        'NL-Premium-Fast'   → ['nl', 'premium', 'fast']
-        '🇺🇸 US 01'         → ['🇺🇸', 'us', '01']
-    """
     import re
-    # Разбиваем по разделителям: пробел, |, -, _
     parts = re.split(r"[\s|_\-]+", remark)
     return [p.lower() for p in parts if p]
 
-
 def remark_matches_flags(remark: str, flags: list[str]) -> bool:
-    """
-    Проверяет, содержит ли ремарка хотя бы один из указанных флагов.
-    Сравнение без учёта регистра.
-    Флаг может быть подстрокой ремарки.
-
-    Пример:
-        remark='🇩🇪 DE | Berlin', flags=['de', 'nl']  → True
-        remark='🇺🇸 US | NY',     flags=['de', 'nl']  → False
-    """
     remark_lower = remark.lower()
     for flag in flags:
         if flag.lower() in remark_lower:
             return True
     return False
-
 
 def filter_by_flags(
     links: list[str],
@@ -112,41 +118,24 @@ def filter_by_flags(
     include_flags:  list[str] | None = None,
     exclude_flags:  list[str] | None = None,
 ) -> tuple[list[str], int]:
-    """
-    Фильтрует список VLESS-ссылок по правилам флагов/ремарок.
-
-    Параметры
-    ─────────
-    require_remark  — если True, пропускать ссылки БЕЗ ремарки.
-    include_flags   — если задан, оставлять ТОЛЬКО ссылки, чья ремарка
-                      содержит хотя бы один флаг из списка.
-    exclude_flags   — если задан, отбрасывать ссылки, чья ремарка
-                      содержит хотя бы один флаг из списка.
-
-    Возвращает (отфильтрованный_список, кол-во_отброшенных).
-    """
     result: list[str] = []
     dropped = 0
 
     for link in links:
         remark = extract_remark(link)
 
-        # 1. Нужна ли ремарка вообще?
         if require_remark and not remark:
             dropped += 1
             continue
 
-        # 2. Белый список флагов (include)
         if include_flags:
             if not remark:
-                # Нет ремарки — не можем проверить, пропускаем
                 dropped += 1
                 continue
             if not remark_matches_flags(remark, include_flags):
                 dropped += 1
                 continue
 
-        # 3. Чёрный список флагов (exclude)
         if exclude_flags and remark:
             if remark_matches_flags(remark, exclude_flags):
                 dropped += 1
@@ -156,16 +145,11 @@ def filter_by_flags(
 
     return result, dropped
 
-
 # ════════════════════════════════════════════════════════════════════════════
-#   ЗАГРУЗКА ПОДПИСОК
+# ЗАГРУЗКА ПОДПИСОК
 # ════════════════════════════════════════════════════════════════════════════
 
 def _fetch_raw(url: str) -> str:
-    """
-    Скачивает текст по URL.
-    Повторяет попытку REQUEST_RETRIES раз при сетевых ошибках.
-    """
     headers = {"User-Agent": f"vless-config-builder/{VERSION}"}
     for attempt in range(1, REQUEST_RETRIES + 1):
         try:
@@ -179,11 +163,7 @@ def _fetch_raw(url: str) -> str:
                          f"Повтор через {RETRY_DELAY}с…"))
             time.sleep(RETRY_DELAY)
 
-
 def _decode_if_base64(text: str) -> str:
-    """
-    Если содержимое закодировано в Base64 — декодирует и возвращает строку.
-    """
     stripped = text.strip()
     if "vless://" in stripped:
         return stripped
@@ -199,24 +179,93 @@ def _decode_if_base64(text: str) -> str:
 
     return stripped
 
-
 def load_subscription(url: str) -> list[str]:
-    """
-    Скачивает подписку и возвращает список строк.
-    Автоматически определяет Base64-кодирование.
-    """
     raw = _fetch_raw(url)
     text = _decode_if_base64(raw)
     lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
     return lines
 
+# ════════════════════════════════════════════════════════════════════════════
+# ANTI-DPI: ФРАГМЕНТАЦИЯ + NOISE
+# ════════════════════════════════════════════════════════════════════════════
+
+def build_sockopt(args: argparse.Namespace | None = None) -> dict:
+    """
+    Собирает sockopt с фрагментацией и noise.
+
+    Фрагментация tlshello разбивает TLS Client Hello на части —
+    ТСПУ видит неполный handshake и не может классифицировать трафик.
+
+    Noise шлёт мусорные пакеты перед handshake, сбивая DPI-классификаторы
+    мобильных операторов (МТС/Билайн/Мегафон используют timing + size анализ).
+    """
+    sockopt: dict = {
+        "mark": 255,
+        "tcpFastOpen": True,       # быстрое переподключение
+        "tcpKeepAliveIdle": 100,
+        "tcpNoDelay": True,
+    }
+
+    # Фрагментация
+    frag_enabled  = FRAGMENT_ENABLED
+    frag_packets  = FRAGMENT_PACKETS
+    frag_length   = FRAGMENT_LENGTH
+    frag_interval = FRAGMENT_INTERVAL
+
+    if args is not None:
+        if getattr(args, "no_fragment", False):
+            frag_enabled = False
+        elif getattr(args, "fragment", False):
+            frag_enabled = True
+        frag_packets  = getattr(args, "fragment_packets",  frag_packets)
+        frag_length   = getattr(args, "fragment_length",   frag_length)
+        frag_interval = getattr(args, "fragment_interval", frag_interval)
+
+    if frag_enabled:
+        sockopt["fragment"] = {
+            "packets":  frag_packets,
+            "length":   frag_length,
+            "interval": frag_interval,
+        }
+
+    # Noise (Xray 1.8.10+)
+    noise_enabled = NOISE_ENABLED
+    if args is not None:
+        if getattr(args, "no_noise", False):
+            noise_enabled = False
+
+    if noise_enabled:
+        sockopt["noises"] = [
+            {
+                "type":   NOISE_TYPE,
+                "packet": NOISE_PACKET,
+                "delay":  NOISE_DELAY,
+            }
+        ]
+
+    return sockopt
+
+
+def build_mux() -> dict | None:
+    """
+    Mux снижает количество TLS handshake'ов — меньше «подозрительных»
+    соединений в единицу времени, что снижает вероятность блокировки
+    по поведенческому анализу ТСПУ.
+    """
+    if not MUX_ENABLED:
+        return None
+    return {
+        "enabled":           True,
+        "concurrency":       MUX_CONCURRENCY,
+        "xudpConcurrency":   MUX_XUDP_CONCURRENCY,
+        "xudpProxyUDP310":   MUX_XUDP_PROXY_UDP310,
+    }
 
 # ════════════════════════════════════════════════════════════════════════════
-#   ПАРСЕР VLESS-ССЫЛОК
+# ПАРСЕР VLESS-ССЫЛОК
 # ════════════════════════════════════════════════════════════════════════════
 
 def _safe_split_address(after_at: str) -> tuple[str, int]:
-    """Разбирает «host:port» или «[ipv6]:port»."""
     if after_at.startswith("["):
         bracket_end = after_at.index("]")
         address = after_at[1:bracket_end]
@@ -231,13 +280,8 @@ def _safe_split_address(after_at: str) -> tuple[str, int]:
     return address, port
 
 
-def parse_vless_link(link: str, index: int) -> dict | None:
-    """
-    Разбирает одну VLESS-ссылку и возвращает outbound-объект для Xray.
-    При ошибке возвращает None.
-    """
+def parse_vless_link(link: str, index: int, args: argparse.Namespace | None = None) -> dict | None:
     try:
-        # Убираем ремарку перед парсингом параметров
         link_no_remark = link.split("#")[0]
         parsed = urlparse(link_no_remark)
 
@@ -256,7 +300,8 @@ def parse_vless_link(link: str, index: int) -> dict | None:
         flow         = p("flow")
         security     = p("security",   "tls")
         sni          = p("sni",        address)
-        fp           = p("fp",         "chrome")
+        # Fingerprint: берём из ссылки или глобальный дефолт
+        fp           = p("fp") or DEFAULT_FINGERPRINT
         path         = p("path",       "/")
         host         = p("host",       sni)
         net_type     = p("type",       "tcp")
@@ -265,9 +310,8 @@ def parse_vless_link(link: str, index: int) -> dict | None:
         spiderx      = p("spx",        "/")
         service_name = p("serviceName")
 
-        # Ремарка в тег не идёт, но можно добавить как комментарий
         remark = extract_remark(link)
-        tag = f"vless-{index}"
+        tag    = f"vless-{index}"
 
         # ── streamSettings ────────────────────────────────────────────────
         stream: dict = {"network": net_type}
@@ -288,6 +332,8 @@ def parse_vless_link(link: str, index: int) -> dict | None:
                 "serverName":    sni,
                 "allowInsecure": False,
                 "fingerprint":   fp,
+                # ALPN: h2,http/1.1 — имитирует обычный браузерный HTTPS
+                "alpn":          ["h2", "http/1.1"],
             }
         else:
             stream["security"] = security if security else "none"
@@ -331,6 +377,11 @@ def parse_vless_link(link: str, index: int) -> dict | None:
                 "seed":   p("seed"),
             }
 
+        # ── Фрагментация + Noise ──────────────────────────────────────────
+        # Применяем только к TCP/WS — для gRPC и QUIC не нужно
+        if net_type not in ("grpc", "quic"):
+            stream["sockopt"] = build_sockopt(args)
+
         # ── Пользователь ──────────────────────────────────────────────────
         user: dict = {
             "id":         uuid,
@@ -340,7 +391,7 @@ def parse_vless_link(link: str, index: int) -> dict | None:
         if flow:
             user["flow"] = flow
 
-        outbound = {
+        outbound: dict = {
             "tag":      tag,
             "protocol": "vless",
             "settings": {
@@ -355,7 +406,12 @@ def parse_vless_link(link: str, index: int) -> dict | None:
             "streamSettings": stream,
         }
 
-        # Сохраняем ремарку как метаданные (Xray игнорирует неизвестные поля)
+        # Mux (не совместим с XTLS flow, пропускаем если есть flow)
+        if not flow:
+            mux = build_mux()
+            if mux:
+                outbound["mux"] = mux
+
         if remark:
             outbound["_remark"] = remark
 
@@ -367,15 +423,13 @@ def parse_vless_link(link: str, index: int) -> dict | None:
         print(dim(f"      Причина: {exc}"))
         return None
 
-
 # ════════════════════════════════════════════════════════════════════════════
-#   СБОРКА КОНФИГА
+# СБОРКА КОНФИГА
 # ════════════════════════════════════════════════════════════════════════════
 
 def build_config(outbounds: list[dict]) -> dict:
     """Собирает итоговый конфиг Xray из списка outbound-объектов."""
 
-    # Убираем служебное поле _remark перед записью в JSON
     clean_outbounds = []
     for ob in outbounds:
         ob_copy = {k: v for k, v in ob.items() if k != "_remark"}
@@ -383,6 +437,29 @@ def build_config(outbounds: list[dict]) -> dict:
 
     return {
         "log": {"loglevel": "warning"},
+
+        # ── DNS: DoH через зарубежные резолверы ──────────────────────────
+        # Предотвращает DNS-блокировки РКН, не зависит от операторского DNS
+        "dns": {
+            "queryStrategy": DNS_QUERY_STRATEGY,
+            "servers": [
+                {
+                    # Российские домены резолвим через системный DNS
+                    # (чтобы не ломать доступ к локальным ресурсам)
+                    "address":  "223.5.5.5",
+                    "domains":  ["geosite:ru", "geosite:category-ru"],
+                    "skipFallback": True,
+                },
+                {
+                    # Всё остальное — через Cloudflare DoH
+                    "address": DNS_SERVERS[0],
+                    "domains": ["geosite:geolocation-!cn"],
+                },
+                # Fallback
+                DNS_SERVERS[1],
+            ],
+            "disableFallbackIfMatch": True,
+        },
 
         "inbounds": [
             {
@@ -393,7 +470,9 @@ def build_config(outbounds: list[dict]) -> dict:
                 "settings": {"auth": "noauth", "udp": True},
                 "sniffing": {
                     "enabled":      True,
-                    "destOverride": ["tls", "http", "quic"],
+                    "destOverride": ["tls", "http", "quic", "fakedns"],
+                    # metadataOnly: False — полный sniffing, нужен для точного роутинга
+                    "metadataOnly": False,
                 },
             },
             {
@@ -404,13 +483,14 @@ def build_config(outbounds: list[dict]) -> dict:
                 "settings": {"auth": "noauth", "udp": True},
                 "sniffing": {
                     "enabled":      True,
-                    "destOverride": ["tls", "http", "quic"],
+                    "destOverride": ["tls", "http", "quic", "fakedns"],
+                    "metadataOnly": False,
                 },
             },
         ],
 
         "outbounds": clean_outbounds + [
-            {"tag": "direct", "protocol": "freedom"},
+            {"tag": "direct", "protocol": "freedom", "settings": {"domainStrategy": "UseIPv4"}},
             {"tag": "block",  "protocol": "blackhole"},
         ],
 
@@ -424,11 +504,25 @@ def build_config(outbounds: list[dict]) -> dict:
                 }
             ],
             "rules": [
+                # Локальные адреса — напрямую
                 {
                     "type":        "field",
                     "ip":          ["geoip:private"],
                     "outboundTag": "direct",
                 },
+                # Российские домены — напрямую (не ломаем банки/госуслуги)
+                {
+                    "type":        "field",
+                    "domain":      ["geosite:ru", "geosite:category-ru"],
+                    "outboundTag": "direct",
+                },
+                # Российские IP — напрямую
+                {
+                    "type":        "field",
+                    "ip":          ["geoip:ru"],
+                    "outboundTag": "direct",
+                },
+                # Весь остальной трафик — через балансировщик VPN
                 {
                     "type":        "field",
                     "network":     "tcp,udp",
@@ -437,6 +531,7 @@ def build_config(outbounds: list[dict]) -> dict:
             ],
         },
 
+        # ── Мониторинг задержек для балансировщика ───────────────────────
         "burstObservatory": {
             "subjectSelector": ["vless-"],
             "pingConfig": {
@@ -449,9 +544,8 @@ def build_config(outbounds: list[dict]) -> dict:
         },
     }
 
-
 # ════════════════════════════════════════════════════════════════════════════
-#   CLI
+# CLI
 # ════════════════════════════════════════════════════════════════════════════
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -459,34 +553,34 @@ def build_arg_parser() -> argparse.ArgumentParser:
         prog="vless-builder",
         description=(
             "Собирает Xray/V2Ray JSON-конфиг из одной или нескольких VLESS-подписок.\n"
-            "Поддерживает plain-text и Base64-кодированные подписки."
+            "Поддерживает plain-text и Base64-кодированные подписки.\n"
+            "Включает обход РКН/ТСПУ: фрагментация TLS, noise, mux, DoH DNS."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 примеры:
-  # Одна подписка
-  python vless_builder.py -s https://example.com/sub
 
-  # Несколько подписок
-  python vless_builder.py -s https://sub1.example.com/vless https://sub2.example.com/vless
+  Одна подписка
+    python vless_builder.py -s https://example.com/sub
 
-  # Подписки из файла
-  python vless_builder.py -f subscriptions.txt
+  Несколько подписок
+    python vless_builder.py -s https://sub1.example.com/vless https://sub2.example.com/vless
 
-  # Только конфиги с ремаркой
-  python vless_builder.py -s https://example.com/sub --require-remark
+  Подписки из файла
+    python vless_builder.py -f subscriptions.txt
 
-  # Только конфиги с флагами DE или NL в ремарке
-  python vless_builder.py -s https://example.com/sub --include-flags DE NL
+  Только конфиги DE или NL, без Premium
+    python vless_builder.py -s https://example.com/sub --include-flags DE NL --exclude-flags Premium
 
-  # Все конфиги КРОМЕ имеющих флаги RU или IR в ремарке
-  python vless_builder.py -s https://example.com/sub --exclude-flags RU IR
+  Отключить noise (если сервер его не поддерживает)
+    python vless_builder.py -s https://example.com/sub --no-noise
 
-  # Совмещение: только DE/NL, но без Premium
-  python vless_builder.py -s https://example.com/sub --include-flags DE NL --exclude-flags Premium
+  Агрессивная фрагментация для жёстких блокировок
+    python vless_builder.py -s https://example.com/sub \\
+      --fragment-packets 1-5 --fragment-length 50-100 --fragment-interval 5-15
 
-  # Свой файл вывода
-  python vless_builder.py -f subscriptions.txt -o config.json
+  Свой файл вывода
+    python vless_builder.py -f subscriptions.txt -o config.json
 """,
     )
 
@@ -517,22 +611,62 @@ def build_arg_parser() -> argparse.ArgumentParser:
         metavar="FLAG",
         nargs="+",
         default=None,
-        help=(
-            "Оставлять ТОЛЬКО ссылки, чья ремарка содержит хотя бы один\n"
-            "из указанных флагов (регистр не важен).\n"
-            "Пример: --include-flags DE NL 🇩🇪"
-        ),
+        help="Оставлять ТОЛЬКО ссылки, чья ремарка содержит хотя бы один флаг.",
     )
     flt.add_argument(
         "--exclude-flags",
         metavar="FLAG",
         nargs="+",
         default=None,
-        help=(
-            "Отбрасывать ссылки, чья ремарка содержит хотя бы один\n"
-            "из указанных флагов (регистр не важен).\n"
-            "Пример: --exclude-flags RU IR Premium"
-        ),
+        help="Отбрасывать ссылки, чья ремарка содержит хотя бы один флаг.",
+    )
+
+    # ── Anti-DPI / ТСПУ ───────────────────────────────────────────────────
+    dpi = parser.add_argument_group("обход РКН/ТСПУ (anti-DPI)")
+    dpi.add_argument(
+        "--fragment",
+        action="store_true",
+        help="Принудительно включить фрагментацию TLS (по умолчанию включена).",
+    )
+    dpi.add_argument(
+        "--no-fragment",
+        action="store_true",
+        help="Отключить фрагментацию.",
+    )
+    dpi.add_argument(
+        "--fragment-packets",
+        metavar="MODE",
+        default=FRAGMENT_PACKETS,
+        help=f"Режим: tlshello | 1-3 | 1-5 (по умолч.: {FRAGMENT_PACKETS}).",
+    )
+    dpi.add_argument(
+        "--fragment-length",
+        metavar="RANGE",
+        default=FRAGMENT_LENGTH,
+        help=f"Размер фрагмента в байтах, напр. 100-200 (по умолч.: {FRAGMENT_LENGTH}).",
+    )
+    dpi.add_argument(
+        "--fragment-interval",
+        metavar="RANGE",
+        default=FRAGMENT_INTERVAL,
+        help=f"Интервал в мс между фрагментами (по умолч.: {FRAGMENT_INTERVAL}).",
+    )
+    dpi.add_argument(
+        "--no-noise",
+        action="store_true",
+        help="Отключить noise-пакеты (если Xray < 1.8.10).",
+    )
+    dpi.add_argument(
+        "--no-mux",
+        action="store_true",
+        help="Отключить мультиплексирование (mux).",
+    )
+    dpi.add_argument(
+        "--fingerprint",
+        metavar="FP",
+        default=DEFAULT_FINGERPRINT,
+        choices=["chrome", "firefox", "safari", "ios", "android", "edge", "random"],
+        help=f"TLS fingerprint браузера (по умолч.: {DEFAULT_FINGERPRINT}).",
     )
 
     # ── Прочее ───────────────────────────────────────────────────────────
@@ -558,7 +692,6 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 
 def collect_urls(args: argparse.Namespace) -> list[str]:
-    """Собирает все URL из аргументов командной строки и файла."""
     urls: list[str] = list(args.subscriptions)
 
     if args.file:
@@ -583,7 +716,6 @@ def collect_urls(args: argparse.Namespace) -> list[str]:
 
 
 def print_filter_summary(args: argparse.Namespace) -> None:
-    """Выводит информацию об активных фильтрах."""
     active = []
 
     if args.require_remark:
@@ -605,13 +737,35 @@ def print_filter_summary(args: argparse.Namespace) -> None:
         print(dim("\n   Фильтры не заданы — берём все VLESS-ссылки."))
 
 
+def print_dpi_summary(args: argparse.Namespace) -> None:
+    frag_on    = not args.no_fragment
+    noise_on   = not args.no_noise
+    mux_on     = not args.no_mux
+
+    print(bold("\n🛡  Обход РКН/ТСПУ:"))
+    print(f"  {cyan('•')} Фрагментация TLS       : "
+          f"{bold(green('вкл')) if frag_on else bold(red('выкл'))} "
+          f"({args.fragment_packets}, {args.fragment_length}b, {args.fragment_interval}ms)")
+    print(f"  {cyan('•')} Noise-пакеты           : "
+          f"{bold(green('вкл')) if noise_on else bold(red('выкл'))}")
+    print(f"  {cyan('•')} Mux                    : "
+          f"{bold(green('вкл')) if mux_on else bold(red('выкл'))}")
+    print(f"  {cyan('•')} TLS Fingerprint        : {bold(args.fingerprint)}")
+    print(f"  {cyan('•')} DNS                    : {bold('DoH (Cloudflare + Google)')}")
+
 # ════════════════════════════════════════════════════════════════════════════
-#   ТОЧКА ВХОДА
+# ТОЧКА ВХОДА
 # ════════════════════════════════════════════════════════════════════════════
 
 def main() -> None:
     parser = build_arg_parser()
     args = parser.parse_args()
+
+    # Применяем fingerprint из CLI к глобальной переменной
+    global DEFAULT_FINGERPRINT, MUX_ENABLED
+    DEFAULT_FINGERPRINT = args.fingerprint
+    if getattr(args, "no_mux", False):
+        MUX_ENABLED = False
 
     # ── Шапка ────────────────────────────────────────────────────────────
     print(bold(cyan(f"\n  VLESS Config Builder  v{VERSION}")))
@@ -621,107 +775,80 @@ def main() -> None:
     urls = collect_urls(args)
     print(bold(f"📡 Подписок к обработке: {len(urls)}"))
 
-    # ── Информация о фильтрах ─────────────────────────────────────────────
+    # ── Фильтры и DPI-сводка ─────────────────────────────────────────────
     print_filter_summary(args)
+    print_dpi_summary(args)
 
-    # ── Скачивание и парсинг ─────────────────────────────────────────────
-    seen_links:    set[str]   = set()
-    all_outbounds: list[dict] = []
-    total_raw    = 0
-    total_skip   = 0
-    total_filtered = 0
+    # ── Загрузка подписок ─────────────────────────────────────────────────
+    all_links: list[str] = []
+    print(bold(f"\n⬇  Загрузка подписок…"))
 
-    for sub_idx, url in enumerate(urls, 1):
-        short_url = url if len(url) <= 60 else url[:57] + "…"
-        print(f"\n  [{sub_idx}/{len(urls)}] {cyan(short_url)}")
-
+    for i, url in enumerate(urls, 1):
+        short = url[:60] + ("…" if len(url) > 60 else "")
+        print(f"  [{i}/{len(urls)}] {dim(short)}", end=" ")
         try:
-            lines = load_subscription(url)
+            links = load_subscription(url)
+            vless_links = [ln for ln in links if ln.startswith("vless://")]
+            all_links.extend(vless_links)
+            print(green(f"✓ {len(vless_links)} конфигов"))
         except Exception as exc:
-            print(red(f"   ✗ Не удалось загрузить подписку: {exc}"))
-            continue
+            print(red(f"✗ ошибка: {exc}"))
 
-        vless_lines = [ln for ln in lines if ln.startswith("vless://")]
-        print(dim(f"   Найдено VLESS-ссылок  : {len(vless_lines)}"))
-        total_raw += len(vless_lines)
+    if not all_links:
+        sys.exit(red("\n❌ Не получено ни одного VLESS-конфига."))
 
-        # ── Дедупликация ──────────────────────────────────────────────────
-        if not args.no_dedup:
-            before_dedup = len(vless_lines)
-            unique_lines = []
-            for ln in vless_lines:
-                if ln not in seen_links:
-                    seen_links.add(ln)
-                    unique_lines.append(ln)
-                else:
-                    total_skip += 1
-            vless_lines = unique_lines
-            dupes = before_dedup - len(vless_lines)
-            if dupes:
-                print(dim(f"   После дедупликации   : {len(vless_lines)} (-{dupes} дублей)"))
+    print(dim(f"\n   Итого ссылок до фильтрации: {len(all_links)}"))
 
-        # ── Фильтрация по флагам ──────────────────────────────────────────
-        need_filter = (
-            args.require_remark
-            or args.include_flags is not None
-            or args.exclude_flags is not None
-        )
-
-        if need_filter:
-            before_filter = len(vless_lines)
-            vless_lines, dropped = filter_by_flags(
-                vless_lines,
-                require_remark=args.require_remark,
-                include_flags=args.include_flags,
-                exclude_flags=args.exclude_flags,
-            )
-            total_filtered += dropped
-            if dropped:
-                print(dim(f"   После фильтра флагов : {len(vless_lines)} (-{dropped} отброшено)"))
-
-        # ── Парсинг ───────────────────────────────────────────────────────
-        added = 0
-        for line in vless_lines:
-            outbound = parse_vless_link(line, len(all_outbounds) + 1)
-            if outbound:
-                all_outbounds.append(outbound)
-                added += 1
-
-        status = green(f"+{added}") if added else yellow("0")
-        print(f"   Добавлено            : {status}")
-
-    # ── Итог сбора ───────────────────────────────────────────────────────
-    print(f"\n{'─' * 52}")
-    print(bold(f"  Всего найдено    : {total_raw}"))
+    # ── Дедупликация ──────────────────────────────────────────────────────
     if not args.no_dedup:
-        print(dim(f"  Дубликатов       : {total_skip}"))
-    if total_filtered:
-        print(dim(f"  Отброшено фильтром: {total_filtered}"))
-    print(bold(f"  Принято в конфиг : {len(all_outbounds)}"))
-    print(f"{'─' * 52}")
+        before = len(all_links)
+        all_links = list(dict.fromkeys(all_links))
+        dupes = before - len(all_links)
+        if dupes:
+            print(dim(f"   Удалено дублей: {dupes}"))
 
-    if not all_outbounds:
-        print(red("\n❌ Не найдено ни одной рабочей VLESS-ссылки. Конфиг не создан."))
-        exit(0)
+    # ── Фильтрация по флагам ──────────────────────────────────────────────
+    all_links, dropped = filter_by_flags(
+        all_links,
+        require_remark = args.require_remark,
+        include_flags  = args.include_flags,
+        exclude_flags  = args.exclude_flags,
+    )
+    if dropped:
+        print(dim(f"   Отброшено фильтром: {dropped}"))
 
-    # ── Генерация JSON ───────────────────────────────────────────────────
-    config = build_config(all_outbounds)
+    print(bold(f"\n✅ Конфигов к сборке: {len(all_links)}"))
+
+    # ── Парсинг ──────────────────────────────────────────────────────────
+    print(bold("\n⚙  Парсинг VLESS-ссылок…"))
+    outbounds: list[dict] = []
+    for idx, link in enumerate(all_links):
+        ob = parse_vless_link(link, idx, args)
+        if ob:
+            outbounds.append(ob)
+
+    if not outbounds:
+        sys.exit(red("\n❌ Ни одна ссылка не была успешно разобрана."))
+
+    skipped = len(all_links) - len(outbounds)
+    if skipped:
+        print(yellow(f"   Пропущено (ошибка парсинга): {skipped}"))
+
+    # ── Сборка и запись ───────────────────────────────────────────────────
+    print(bold(f"\n📦 Сборка конфига ({len(outbounds)} outbound'ов)…"))
+    config = build_config(outbounds)
+
     output_path = Path(args.output)
+    output_path.write_text(
+        json.dumps(config, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
-    try:
-        output_path.write_text(
-            json.dumps(config, ensure_ascii=False, indent=2),
-            encoding="utf-8",
-        )
-    except OSError as exc:
-        sys.exit(red(f"\n❌ Не удалось записать файл: {exc}"))
-
-    # ── Финальное сообщение ──────────────────────────────────────────────
-    print(green(f"\n✅ Конфиг успешно сохранён: {bold(str(output_path))}"))
-    print(dim(f"   Серверов в балансере : {len(all_outbounds)}"))
-    print(dim(f"   Стратегия балансера  : leastLoad"))
-    print(dim(f"   SOCKS5               : 127.0.0.1:10808"))
-    print(dim(f"   HTTP proxy           : 127.0.0.1:10809"))
+    # ── Итог ──────────────────────────────────────────────────────────────
+    size_kb = output_path.stat().st_size / 1024
+    print(bold(green(f"\n✓ Конфиг сохранён: {output_path}  ({size_kb:.1f} KB)")))
+    print(dim(f"   Outbound'ов: {len(outbounds)}  •  Балансировщик: leastPing"))
+    print(dim( "   Запуск:      xray run -c " + str(output_path)))
     print()
 
 
