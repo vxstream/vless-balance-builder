@@ -32,9 +32,6 @@ jobs:
       - name: Run collector (NL ONLY)
         run: python collect.py -f subscriptions.txt -o NL.json --require-remark --include-flags NL
 
-      - name: Run collector (SG ONLY)
-        run: python collect.py -f subscriptions.txt -o SG.json --require-remark --include-flags SG
-
       - name: Run collector (US ONLY)
         run: python collect.py -f subscriptions.txt -o US.json --require-remark --include-flags US
         
@@ -47,7 +44,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add ALL.json ALL-NORU.json NL.json SG.json US.json SE.json
+          git add ALL.json ALL-NORU.json NL.json US.json SE.json
           
           # Коммитим только если файл изменился
           if git diff --cached --quiet; then
