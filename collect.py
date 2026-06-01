@@ -420,7 +420,7 @@ def build_config(outbounds: list[dict]) -> dict:
                 {
                     "tag":      "vless-balancer",
                     "selector": ["vless-"],
-                    "strategy": {"type": "leastLoad"},   # ← было leastPing
+                    "strategy": {"type": "leastPing"},
                 }
             ],
             "rules": [
@@ -440,11 +440,11 @@ def build_config(outbounds: list[dict]) -> dict:
         "burstObservatory": {
             "subjectSelector": ["vless-"],
             "pingConfig": {
-                "destination":   "http://www.google.com/generate_204",
-                "interval":      "10s",
-                "timeout":       "8s",
-                "burstSize":     5,
-                "burstInterval": "800ms",
+                "destination":   "https://t.me/",
+                "interval":      "30s",
+                "timeout":       "15s",
+                "burstSize":     10,
+                "burstInterval": "1000ms",
             },
         },
     }
