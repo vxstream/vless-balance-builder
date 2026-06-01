@@ -1,0 +1,127 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "tls",
+          "http",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "tls",
+          "http",
+          "quic"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "8.35.211.9",
+            "port": 2053,
+            "users": [
+              {
+                "id": "b1f8283d-36f5-4ff9-8ad8-e6d733a18fa0",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "darkness427edge-93h.pages.dev",
+          "allowInsecure": false,
+          "fingerprint": "chrome"
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "darkness427edge-93h.pages.dev"
+          }
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom"
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "balancers": [
+      {
+        "tag": "vless-balancer",
+        "selector": [
+          "vless-"
+        ],
+        "strategy": {
+          "type": "leastLoad"
+        }
+      }
+    ],
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "network": "tcp,udp",
+        "balancerTag": "vless-balancer"
+      }
+    ]
+  },
+  "burstObservatory": {
+    "subjectSelector": [
+      "vless-"
+    ],
+    "pingConfig": {
+      "destination": "http://www.google.com/generate_204",
+      "interval": "10s",
+      "timeout": "8s",
+      "burstSize": 5,
+      "burstInterval": "800ms"
+    }
+  }
+}
