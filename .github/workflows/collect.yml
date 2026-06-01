@@ -24,15 +24,21 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run collector
-        run: python collect.py -f subscriptions.txt
+      - name: Run collector (ALL)
+        run: python collect.py -f subscriptions.txt -o ALL.json
+
+      - name: Run collector (ALL NORU)
+        run: python collect.py -f subscriptions.txt -o ALL-NORU.json --require-remark --exclude-flags RU
+        
+      - name: Run collector (NL ONLY)
+        run: python collect.py -f subscriptions.txt -o NL.json --require-remark --include-flags NL
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add main.json
+          git add ALL.json ALL-NORU.json NL.json
           
           # Коммитим только если файл изменился
           if git diff --cached --quiet; then
