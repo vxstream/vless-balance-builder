@@ -701,7 +701,8 @@ def main() -> None:
     print(f"{'─' * 52}")
 
     if not all_outbounds:
-        sys.exit(red("\n❌ Не найдено ни одной рабочей VLESS-ссылки. Конфиг не создан."))
+        print(red("\n❌ Не найдено ни одной рабочей VLESS-ссылки. Конфиг не создан."))
+        exit(0)
 
     # ── Генерация JSON ───────────────────────────────────────────────────
     config = build_config(all_outbounds)
