@@ -1,0 +1,155 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "tls",
+          "http",
+          "quic"
+        ]
+      }
+    },
+    {
+      "tag": "http-in",
+      "listen": "127.0.0.1",
+      "port": 10809,
+      "protocol": "http",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "tls",
+          "http",
+          "quic"
+        ]
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "fi2.vitok.cc",
+            "port": 443,
+            "users": [
+              {
+                "id": "1b9e301d-cecd-4eb1-8b36-eef811c2696d",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yastatic.net",
+          "fingerprint": "chrome",
+          "publicKey": "3LUIM_6cYceTgNt6LWnR8YSVrenpLsh-FIGDrmfjjwc",
+          "shortId": "5e841fab",
+          "spiderX": "/",
+          "show": false
+        }
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "62.238.32.25",
+            "port": 443,
+            "users": [
+              {
+                "id": "1b9e301d-cecd-4eb1-8b36-eef811c2696d",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yastatic.net",
+          "fingerprint": "chrome",
+          "publicKey": "3LUIM_6cYceTgNt6LWnR8YSVrenpLsh-FIGDrmfjjwc",
+          "shortId": "5e841fab",
+          "spiderX": "/",
+          "show": false
+        }
+      }
+    },
+    {
+      "tag": "direct",
+      "protocol": "freedom"
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "balancers": [
+      {
+        "tag": "vless-balancer",
+        "selector": [
+          "vless-"
+        ],
+        "strategy": {
+          "type": "leastLoad"
+        }
+      }
+    ],
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "network": "tcp,udp",
+        "balancerTag": "vless-balancer"
+      }
+    ]
+  },
+  "burstObservatory": {
+    "subjectSelector": [
+      "vless-"
+    ],
+    "pingConfig": {
+      "destination": "http://www.google.com/generate_204",
+      "interval": "10s",
+      "timeout": "8s",
+      "burstSize": 5,
+      "burstInterval": "800ms"
+    }
+  }
+}
