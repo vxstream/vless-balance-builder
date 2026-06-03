@@ -2,6 +2,27 @@
   "log": {
     "loglevel": "warning"
   },
+  "dns": {
+    "queryStrategy": "UseIPv4",
+    "servers": [
+      {
+        "address": "223.5.5.5",
+        "domains": [
+          "geosite:ru",
+          "geosite:category-ru"
+        ],
+        "skipFallback": true
+      },
+      {
+        "address": "https://1.1.1.1/dns-query",
+        "domains": [
+          "geosite:geolocation-!cn"
+        ]
+      },
+      "https://8.8.8.8/dns-query"
+    ],
+    "disableFallbackIfMatch": true
+  },
   "inbounds": [
     {
       "tag": "socks-in",
@@ -17,8 +38,10 @@
         "destOverride": [
           "tls",
           "http",
-          "quic"
-        ]
+          "quic",
+          "fakedns"
+        ],
+        "metadataOnly": false
       }
     },
     {
@@ -35,23 +58,25 @@
         "destOverride": [
           "tls",
           "http",
-          "quic"
-        ]
+          "quic",
+          "fakedns"
+        ],
+        "metadataOnly": false
       }
     }
   ],
   "outbounds": [
     {
-      "tag": "vless-1",
+      "tag": "vless-0",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "78.17.3.113",
-            "port": 443,
+            "address": "bc-de-wc.ray-balance.space",
+            "port": 4443,
             "users": [
               {
-                "id": "ec9a9c43-0d86-420c-a5e5-9f20a6a83ba6",
+                "id": "0eca1f22-e5a1-4888-a0fa-c2345e87cf2f",
                 "encryption": "none",
                 "level": 0
               }
@@ -60,20 +85,21 @@
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ozon.ru",
-          "fingerprint": "chrome",
-          "publicKey": "zOi7yEDq1jccA285Ax-V8Fu8JxOmTXqCsDY034OoUUU",
-          "shortId": "15d10c9b72c2f0a7",
-          "spiderX": "/5CE01VwCkz6tJIT",
-          "show": false
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": ""
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-1",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -95,25 +121,49 @@
         "security": "reality",
         "realitySettings": {
           "serverName": "yastatic.net",
-          "fingerprint": "chrome",
+          "fingerprint": "random",
           "publicKey": "3LUIM_6cYceTgNt6LWnR8YSVrenpLsh-FIGDrmfjjwc",
           "shortId": "5e841fab",
           "spiderX": "/",
           "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "fi.clgate.network",
+            "address": "63.141.128.237",
             "port": 443,
             "users": [
               {
-                "id": "f4bad870-4b45-4a46-bec6-d05fa31df1cb",
+                "id": "ffc46551-cb3f-435c-a97a-b9bab4a1a0d2",
                 "encryption": "none",
                 "level": 0
               }
@@ -123,88 +173,51 @@
       },
       "streamSettings": {
         "network": "xhttp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "m.twitch.tv",
-          "fingerprint": "chrome",
-          "publicKey": "r2B2KwffHmyjWrmwKmI0o3uW9UEsn2l_Ko0UmyTjKgM",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "xhttpSettings": {
-          "path": "/"
-        }
-      }
-    },
-    {
-      "tag": "vless-4",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "62.238.32.25",
-            "port": 443,
-            "users": [
-              {
-                "id": "1b9e301d-cecd-4eb1-8b36-eef811c2696d",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yastatic.net",
-          "fingerprint": "chrome",
-          "publicKey": "3LUIM_6cYceTgNt6LWnR8YSVrenpLsh-FIGDrmfjjwc",
-          "shortId": "5e841fab",
-          "spiderX": "/",
-          "show": false
-        }
-      }
-    },
-    {
-      "tag": "vless-5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "185.18.250.127",
-            "port": 2096,
-            "users": [
-              {
-                "id": "2ee26119-94e5-40b4-ba3a-16354021b600",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "69565ce3109804e7813f98ee.mmdbay.blog",
+          "serverName": "cd2.serviceali.ir",
           "allowInsecure": false,
-          "fingerprint": "chrome"
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "wsSettings": {
-          "path": "/graphql",
-          "headers": {
-            "Host": "69565ce3109804e7813f98ee.mmdbay.blog"
-          }
+        "xhttpSettings": {
+          "path": "/eQ7EK5s88mh1QkaLDB4v5psc"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "direct",
-      "protocol": "freedom"
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIPv4"
+      }
     },
     {
       "tag": "block",
@@ -229,6 +242,21 @@
         "type": "field",
         "ip": [
           "geoip:private"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:ru",
+          "geosite:category-ru"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "ip": [
+          "geoip:ru"
         ],
         "outboundTag": "direct"
       },
