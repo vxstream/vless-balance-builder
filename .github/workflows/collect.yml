@@ -38,19 +38,82 @@ jobs:
       - name: Run collector (SE ONLY)
         run: python collect.py -f subscriptions.txt -o SE.json --require-remark --include-flags SE
 
+      - name: Run collector (GB ONLY)
+        run: python collect.py -f subscriptions.txt -o GB.json --require-remark --include-flags GB
+
+      - name: Run collector (DE ONLY)
+        run: python collect.py -f subscriptions.txt -o DE.json --require-remark --include-flags DE
+
+      - name: Run collector (FR ONLY)
+        run: python collect.py -f subscriptions.txt -o FR.json --require-remark --include-flags FR
+
+      - name: Run collector (FI ONLY)
+        run: python collect.py -f subscriptions.txt -o FI.json --require-remark --include-flags FI
+
+      - name: Run collector (JP ONLY)
+        run: python collect.py -f subscriptions.txt -o JP.json --require-remark --include-flags JP
+
+      - name: Run collector (SG ONLY)
+        run: python collect.py -f subscriptions.txt -o SG.json --require-remark --include-flags SG
+
+      - name: Run collector (KR ONLY)
+        run: python collect.py -f subscriptions.txt -o KR.json --require-remark --include-flags KR
+
+      - name: Run collector (CA ONLY)
+        run: python collect.py -f subscriptions.txt -o CA.json --require-remark --include-flags CA
+
+      - name: Run collector (AU ONLY)
+        run: python collect.py -f subscriptions.txt -o AU.json --require-remark --include-flags AU
+
+      - name: Run collector (PL ONLY)
+        run: python collect.py -f subscriptions.txt -o PL.json --require-remark --include-flags PL
+
+      - name: Run collector (CH ONLY)
+        run: python collect.py -f subscriptions.txt -o CH.json --require-remark --include-flags CH
+
+      - name: Run collector (NO ONLY)
+        run: python collect.py -f subscriptions.txt -o NO.json --require-remark --include-flags NO
+
+      - name: Run collector (AT ONLY)
+        run: python collect.py -f subscriptions.txt -o AT.json --require-remark --include-flags AT
+
+      - name: Run collector (ES ONLY)
+        run: python collect.py -f subscriptions.txt -o ES.json --require-remark --include-flags ES
+
+      - name: Run collector (IT ONLY)
+        run: python collect.py -f subscriptions.txt -o IT.json --require-remark --include-flags IT
+
+      - name: Run collector (CZ ONLY)
+        run: python collect.py -f subscriptions.txt -o CZ.json --require-remark --include-flags CZ
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add ALL.json ALL-NORU.json NL.json US.json
+          # Собираем список файлов, которые реально существуют
+          files="ALL.json ALL-NORU.json NL.json US.json SE.json GB.json DE.json FR.json FI.json JP.json SG.json KR.json CA.json AU.json PL.json CH.json NO.json AT.json ES.json IT.json CZ.json"
           
-          # Коммитим только если файл изменился
+          added=0
+          for f in $files; do
+            if [ -f "$f" ]; then
+              git add "$f"
+              added=1
+            else
+              echo "Skipping $f (not found)"
+            fi
+          done
+          
+          # Если не добавлено ни одного файла — выходим
+          if [ "$added" -eq 0 ]; then
+            echo "No files to commit"
+            exit 0
+          fi
+          
+          # Коммитим только если есть изменения
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Update VLESS balancer config — $(date -u '+%Y-%m-%d %H:%M UTC')"
             git push
           fi
-          
