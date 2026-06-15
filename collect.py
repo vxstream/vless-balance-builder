@@ -828,7 +828,8 @@ def main() -> None:
             outbounds.append(ob)
 
     if not outbounds:
-        sys.exit(red("\n❌ Ни одна ссылка не была успешно разобрана."))
+        print(red("\n❌ Ни одна ссылка не была успешно разобрана."))
+        exit(0)
 
     skipped = len(all_links) - len(outbounds)
     if skipped:
