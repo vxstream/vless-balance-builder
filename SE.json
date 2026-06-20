@@ -72,14 +72,13 @@
       "settings": {
         "vnext": [
           {
-            "address": "fra.pandaonline.org",
-            "port": 443,
+            "address": "185.48.251.195",
+            "port": 448,
             "users": [
               {
-                "id": "3cbf82a7-1f95-4a39-a77f-788b1737ed64",
+                "id": "7fc0fd86-79a9-48dd-87e8-669758e9ffa8",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
@@ -89,10 +88,10 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "fra.pandaonline.org",
+          "serverName": "www.samsung.com",
           "fingerprint": "firefox",
-          "publicKey": "t_UyYJCXeQjHMYh0fnK6SinlQ5vkeVy-8yKrkUgVNEE",
-          "shortId": "",
+          "publicKey": "ncuqENP8uAV8w18kOQJlfWCC7dWjnUY1UY_5Iwtf21o",
+          "shortId": "181c8972132cca60",
           "spiderX": "/",
           "show": false
         },
@@ -114,10 +113,71 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.48.251.195",
+            "port": 448,
+            "users": [
+              {
+                "id": "7fc0fd86-79a9-48dd-87e8-669758e9ffa8",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.samsung.com",
+          "fingerprint": "chrome",
+          "publicKey": "ncuqENP8uAV8w18kOQJlfWCC7dWjnUY1UY_5Iwtf21o",
+          "shortId": "181c8972132cca60",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
