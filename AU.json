@@ -72,38 +72,48 @@
       "settings": {
         "vnext": [
           {
-            "address": "68.210.184.141",
-            "port": 444,
+            "address": "77.73.131.154",
+            "port": 443,
             "users": [
               {
-                "id": "07ce63a0-7fc0-47e0-bf9d-4a10d31c0b1a",
+                "id": "1f4c983e-382c-d2fa-b2dc-7981f02b34de",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "yahoo.com",
-          "fingerprint": "random",
-          "publicKey": "OKSZr7AAsHRtaGMJMpRUibQAXiQKGQ3NR4osIdi9p2Y",
-          "shortId": "41",
+          "serverName": "vindobona.org",
+          "fingerprint": "firefox",
+          "publicKey": "5GhMSJXQv1wXHVD999YHRRj83m-7VKH8qb_vTxBGbng",
+          "shortId": "08",
           "spiderX": "/",
           "show": false
         },
-        "grpcSettings": {
-          "serviceName": ""
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -154,6 +164,46 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "68.210.184.141",
+            "port": 444,
+            "users": [
+              {
+                "id": "07ce63a0-7fc0-47e0-bf9d-4a10d31c0b1a",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "yahoo.com",
+          "fingerprint": "random",
+          "publicKey": "OKSZr7AAsHRtaGMJMpRUibQAXiQKGQ3NR4osIdi9p2Y",
+          "shortId": "41",
+          "spiderX": "/",
+          "show": false
+        },
+        "grpcSettings": {
+          "serviceName": ""
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {

@@ -72,7 +72,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "143.244.45.54",
+            "address": "143.244.45.50",
             "port": 8443,
             "users": [
               {
@@ -128,7 +128,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "143.244.45.50",
+            "address": "143.244.45.54",
             "port": 8443,
             "users": [
               {
@@ -184,6 +184,56 @@
       "settings": {
         "vnext": [
           {
+            "address": "172.252.125.77",
+            "port": 443,
+            "users": [
+              {
+                "id": "217d5b38-a3a9-4ee1-9ca4-20667ee85933",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "arxiv.org",
+          "fingerprint": "firefox",
+          "publicKey": "wLfv-FK7CWwt57C7Ye-zx0MNraxYoQXAsjIx4f27WWY",
+          "shortId": "a88038293e33",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-3",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "143.244.45.1",
             "port": 8443,
             "users": [
@@ -207,6 +257,56 @@
             "h2",
             "http/1.1"
           ]
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "194.152.44.21",
+            "port": 2052,
+            "users": [
+              {
+                "id": "42e0d02c-b75c-4b9d-bc15-773aa3cbe6bd",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "none",
+        "xhttpSettings": {
+          "path": "/pabloping"
         },
         "sockopt": {
           "mark": 255,
