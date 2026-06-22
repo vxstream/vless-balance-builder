@@ -334,14 +334,13 @@
       "settings": {
         "vnext": [
           {
-            "address": "95.173.205.82",
-            "port": 443,
+            "address": "95.173.205.69",
+            "port": 8443,
             "users": [
               {
-                "id": "92e41c23-4b39-464a-bbff-63ef84f317da",
+                "id": "394f6981-a782-4779-9a85-e6cf22935d93",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
@@ -349,14 +348,15 @@
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "api-maps.yandex.ru",
-          "fingerprint": "firefox",
-          "publicKey": "Zj7pfZMGav4r5mbPzpi5ohHue1r0El7QfnQt5nx2ljI",
-          "shortId": "56d5a8fb",
-          "spiderX": "/",
-          "show": false
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ams1.fromblancwithlove.com",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
         "sockopt": {
           "mark": 255,
@@ -376,6 +376,12 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
