@@ -90,7 +90,7 @@
         "tlsSettings": {
           "serverName": "fry2.brocollisuper.click",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "firefox",
           "alpn": [
             "h2",
             "http/1.1"
@@ -131,7 +131,7 @@
         "tlsSettings": {
           "serverName": "fry2.brocollisuper.click",
           "allowInsecure": false,
-          "fingerprint": "firefox",
+          "fingerprint": "random",
           "alpn": [
             "h2",
             "http/1.1"
@@ -172,7 +172,7 @@
         "tlsSettings": {
           "serverName": "fry2.brocollisuper.click",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "firefox",
           "alpn": [
             "h2",
             "http/1.1"
@@ -195,11 +195,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "45.146.131.154",
-            "port": 8549,
+            "address": "fry2.brocollisuper.click",
+            "port": 443,
             "users": [
               {
-                "id": "0dd1365f-4765-4502-a20d-1e09516ae8f5",
+                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
                 "encryption": "none",
                 "level": 0
               }
@@ -209,17 +209,18 @@
       },
       "streamSettings": {
         "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.microsoft.com",
-          "fingerprint": "chrome",
-          "publicKey": "4IOWxdtudwyVdmZl1Z2CINSbYHgMk94Bet0hVlgkrXo",
-          "shortId": "c4e8a1f29b3d6075",
-          "spiderX": "/",
-          "show": false
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fry2.brocollisuper.click",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
         "grpcSettings": {
-          "serviceName": "service"
+          "serviceName": "grpc-api"
         }
       },
       "mux": {
@@ -231,6 +232,64 @@
     },
     {
       "tag": "vless-4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "205.237.104.27",
+            "port": 8443,
+            "users": [
+              {
+                "id": "38704d8c-0eec-4faf-bc0d-6bc49330c50d",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.tradingview.com",
+          "fingerprint": "firefox",
+          "publicKey": "uYlJKmVHsSuCk-T9Y4CpqyR2LIP9etRZkRmDEt8-fUs",
+          "shortId": "6586ca7468d16620",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/api/v2/sync"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-5",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -289,56 +348,6 @@
       }
     },
     {
-      "tag": "vless-5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "193.233.89.194",
-            "port": 443,
-            "users": [
-              {
-                "id": "0afe8434-7b68-48a3-a96f-509f7af15e5e",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ru-streaming.barryvpn.com",
-          "fingerprint": "qq",
-          "publicKey": "u1QltI2SnUX48F-cqulaVojcSLadC9I1Vt8gOqnFTB4",
-          "shortId": "0123456789abcdef",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
       "tag": "vless-6",
       "protocol": "vless",
       "settings": {
@@ -384,11 +393,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "tmesubgift.up.railway.app",
+            "address": "de-3.coinbridge.nl",
             "port": 443,
             "users": [
               {
-                "id": "80004025-cea8-d255-5527-3895e4740a95",
+                "id": "b0f08ae1-7cf9-4612-ad61-72681e0b92da",
                 "encryption": "none",
                 "level": 0
               }
@@ -397,22 +406,56 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "tmesubgift.up.railway.app",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
+        "network": "grpc",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "google.com",
+          "fingerprint": "random",
+          "publicKey": "kPBXTe2KCp55GrHS_qU_sF7ohUcT8Vu-e8i6Yd9MERI",
+          "shortId": "d5c7f84e37e0c12d",
+          "spiderX": "/",
+          "show": false
         },
-        "wsSettings": {
-          "path": "/ws/80004025-cea8-d255-5527-3895e4740a95",
-          "headers": {
-            "Host": "tmesubgift.up.railway.app"
+        "grpcSettings": {
+          "serviceName": "data-sync"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-9",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.86.68.139",
+            "port": 443,
+            "users": [
+              {
+                "id": "7ff33783-66b6-11f1-a2af-525400b0a67a",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
           }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.akamai.com",
+          "fingerprint": "chrome",
+          "publicKey": "gydLdekl4sNcE2j7vueKJJhpYWTBxlGs_VQ6-ZH55iQ",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -432,94 +475,6 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-8",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "fry4.brocollisuper.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fry4.brocollisuper.click",
-          "allowInsecure": false,
-          "fingerprint": "firefox",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "grpcSettings": {
-          "serviceName": "grpc-api"
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-9",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "fry4.brocollisuper.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fry4.brocollisuper.click",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "grpcSettings": {
-          "serviceName": "grpc-api"
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -610,11 +565,93 @@
       "settings": {
         "vnext": [
           {
-            "address": "89.208.97.95",
+            "address": "fry4.brocollisuper.click",
             "port": 443,
             "users": [
               {
-                "id": "e96ffcc1-5acf-4e24-9b67-1b736a2f1c24",
+                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fry4.brocollisuper.click",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "grpc-api"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-13",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "fry4.brocollisuper.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fry4.brocollisuper.click",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "grpc-api"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-14",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "estonianode.dostupnet.ru",
+            "port": 9443,
+            "users": [
+              {
+                "id": "ebcb836a-ab7a-424f-a07c-aba25c70da69",
                 "encryption": "none",
                 "level": 0,
                 "flow": "xtls-rprx-vision"
@@ -627,10 +664,10 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "amazon.fr",
+          "serverName": "estonianode.dostupnet.ru",
           "fingerprint": "firefox",
-          "publicKey": "OhHt4eEk9pZVzDpt37apm_7DRM0qP6_D4yJBCK0n02A",
-          "shortId": "5701e710c025b4b8",
+          "publicKey": "2MnLp2jBmP-bPYRHf3VY3wyGMwIYIAizXCB7UxgYVGc",
+          "shortId": "7c16c340cde3ed39",
           "spiderX": "/",
           "show": false
         },
@@ -655,7 +692,144 @@
       }
     },
     {
-      "tag": "vless-13",
+      "tag": "vless-15",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "fry4.brocollisuper.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fry4.brocollisuper.click",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "grpc-api"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-16",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "194.164.217.139",
+            "port": 448,
+            "users": [
+              {
+                "id": "d61b4e1b-4745-484f-8362-18537825a7af",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.samsung.com",
+          "fingerprint": "firefox",
+          "publicKey": "fjPED4_A_EQrL8PAuBUi9ChoNbY2OC4mUl7r8zaLoxo",
+          "shortId": "05fdaa8a05be46a9",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-17",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "fry2.brocollisuper.click",
+            "port": 443,
+            "users": [
+              {
+                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fry2.brocollisuper.click",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "grpc-api"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-18",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -713,238 +887,6 @@
       }
     },
     {
-      "tag": "vless-14",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "fry4.brocollisuper.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fry4.brocollisuper.click",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "grpcSettings": {
-          "serviceName": "grpc-api"
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-15",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "89.208.113.157",
-            "port": 443,
-            "users": [
-              {
-                "id": "1f4c983e-382c-d2fa-b2dc-7981f02b34de",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "parisjetaime.com",
-          "fingerprint": "firefox",
-          "publicKey": "2dgS9vJTywAfGZmlkuzDIIXLUR-E1A-0na8_W--ruUc",
-          "shortId": "5be8210215",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-16",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "fry2.brocollisuper.click",
-            "port": 443,
-            "users": [
-              {
-                "id": "e4468d51-2528-4d40-a92d-5cf409d00dac",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fry2.brocollisuper.click",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "grpcSettings": {
-          "serviceName": "grpc-api"
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-17",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "estonianode.dostupnet.ru",
-            "port": 9443,
-            "users": [
-              {
-                "id": "ebcb836a-ab7a-424f-a07c-aba25c70da69",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "estonianode.dostupnet.ru",
-          "fingerprint": "firefox",
-          "publicKey": "2MnLp2jBmP-bPYRHf3VY3wyGMwIYIAizXCB7UxgYVGc",
-          "shortId": "7c16c340cde3ed39",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-18",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "212.69.86.220",
-            "port": 9443,
-            "users": [
-              {
-                "id": "ebcb836a-ab7a-424f-a07c-aba25c70da69",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "estonianode.dostupnet.ru",
-          "fingerprint": "firefox",
-          "publicKey": "2MnLp2jBmP-bPYRHf3VY3wyGMwIYIAizXCB7UxgYVGc",
-          "shortId": "7c16c340cde3ed39",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
       "tag": "vless-19",
       "protocol": "vless",
       "settings": {
@@ -997,11 +939,111 @@
       "settings": {
         "vnext": [
           {
-            "address": "194.164.217.139",
-            "port": 448,
+            "address": "89.208.97.95",
+            "port": 443,
             "users": [
               {
-                "id": "d61b4e1b-4745-484f-8362-18537825a7af",
+                "id": "e96ffcc1-5acf-4e24-9b67-1b736a2f1c24",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "amazon.fr",
+          "fingerprint": "firefox",
+          "publicKey": "OhHt4eEk9pZVzDpt37apm_7DRM0qP6_D4yJBCK0n02A",
+          "shortId": "5701e710c025b4b8",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-21",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "89.208.113.157",
+            "port": 443,
+            "users": [
+              {
+                "id": "1f4c983e-382c-d2fa-b2dc-7981f02b34de",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "parisjetaime.com",
+          "fingerprint": "firefox",
+          "publicKey": "2dgS9vJTywAfGZmlkuzDIIXLUR-E1A-0na8_W--ruUc",
+          "shortId": "5be8210215",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-22",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.234.64.112",
+            "port": 8443,
+            "users": [
+              {
+                "id": "69a2af58-d74a-44ca-864a-e09b493f4274",
                 "encryption": "none",
                 "level": 0
               }
@@ -1013,10 +1055,10 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "www.samsung.com",
+          "serverName": "www.intel.com",
           "fingerprint": "firefox",
-          "publicKey": "fjPED4_A_EQrL8PAuBUi9ChoNbY2OC4mUl7r8zaLoxo",
-          "shortId": "05fdaa8a05be46a9",
+          "publicKey": "aVUakfkgsn1t6_Qi4EKwJNmSdkvKP4U542QghhAh-C4",
+          "shortId": "40f455",
           "spiderX": "/",
           "show": false
         },
@@ -1047,7 +1089,57 @@
       }
     },
     {
-      "tag": "vless-21",
+      "tag": "vless-23",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "212.69.86.220",
+            "port": 9443,
+            "users": [
+              {
+                "id": "ebcb836a-ab7a-424f-a07c-aba25c70da69",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "estonianode.dostupnet.ru",
+          "fingerprint": "firefox",
+          "publicKey": "2MnLp2jBmP-bPYRHf3VY3wyGMwIYIAizXCB7UxgYVGc",
+          "shortId": "7c16c340cde3ed39",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-24",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1094,68 +1186,6 @@
             }
           ]
         }
-      }
-    },
-    {
-      "tag": "vless-22",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "solar.appleseraj.ir",
-            "port": 2083,
-            "users": [
-              {
-                "id": "a4548d7f-8e0f-4780-9f5a-30cbd2754550",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fruumonta.appleseraj.ir",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "?ed=2048",
-          "headers": {
-            "Host": "fruumonta.appleseraj.ir"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
