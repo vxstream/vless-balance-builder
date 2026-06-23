@@ -272,11 +272,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "95.85.246.21",
+            "address": "sw-1.coinbridge.nl",
             "port": 443,
             "users": [
               {
-                "id": "a34b5e88-cf0d-4c01-8199-2d1002d3c787",
+                "id": "b0f08ae1-7cf9-4612-ad61-72681e0b92da",
                 "encryption": "none",
                 "level": 0
               }
@@ -285,36 +285,18 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "grpc",
         "security": "reality",
         "realitySettings": {
-          "serverName": "wikihow.com",
-          "fingerprint": "firefox",
-          "publicKey": "p9ISfhV0uZpKSgrK_8R6Mm4A01tWdzpKMlFR2TIj81s",
-          "shortId": "",
+          "serverName": "google.com",
+          "fingerprint": "random",
+          "publicKey": "kPBXTe2KCp55GrHS_qU_sF7ohUcT8Vu-e8i6Yd9MERI",
+          "shortId": "d5c7f84e37e0c12d",
           "spiderX": "/",
           "show": false
         },
-        "xhttpSettings": {
-          "path": "/"
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
+        "grpcSettings": {
+          "serviceName": "data-sync"
         }
       },
       "mux": {
@@ -488,6 +470,64 @@
       "settings": {
         "vnext": [
           {
+            "address": "95.85.246.21",
+            "port": 443,
+            "users": [
+              {
+                "id": "a34b5e88-cf0d-4c01-8199-2d1002d3c787",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "wikihow.com",
+          "fingerprint": "firefox",
+          "publicKey": "p9ISfhV0uZpKSgrK_8R6Mm4A01tWdzpKMlFR2TIj81s",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-9",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "46.226.161.161",
             "port": 14302,
             "users": [
@@ -530,68 +570,6 @@
             }
           ]
         }
-      }
-    },
-    {
-      "tag": "vless-9",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "141.101.114.8",
-            "port": 443,
-            "users": [
-              {
-                "id": "5d8eb33a-2166-4daf-88fe-4be5799c493b",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "noisy-term-e657.airdrop2014aa5168.workers.dev",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "noisy-term-e657.airdrop2014aa5168.workers.dev"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
