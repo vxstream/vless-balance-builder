@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "43.164.132.200",
-            "port": 666,
+            "address": "car2.carcloudsix.site",
+            "port": 444,
             "users": [
               {
-                "id": "8d5e7f2a-3c1b-4d9e-a6f8-2b5c0e7d4a19",
+                "id": "2bbcaede-7820-4a21-8357-c86aec278c4e",
                 "encryption": "none",
                 "level": 0
               }
@@ -88,18 +88,71 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "43.164.132.200",
+          "serverName": "car2.carcloudsix.site",
           "allowInsecure": false,
-          "fingerprint": "chrome",
+          "fingerprint": "random",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
         "wsSettings": {
-          "path": "/proxy",
+          "path": "/A2",
           "headers": {
-            "Host": "43.164.132.200"
+            "Host": "play.google.com"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "car2.carcloudsix.site",
+            "port": 444,
+            "users": [
+              {
+                "id": "2bbcaede-7820-4a21-8357-c86aec278c4e",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/A2",
+          "headers": {
+            "Host": "play.google.com"
           }
         },
         "sockopt": {
