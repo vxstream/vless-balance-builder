@@ -122,35 +122,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "s5.db-link.in",
-            "port": 17820,
+            "address": "91.199.137.131",
+            "port": 443,
             "users": [
               {
-                "id": "75d4d24d-ba8d-3676-a5c6-edd6ea6dbfb6",
+                "id": "5a51aefc-b13b-4072-a43b-b05eb1d34798",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "48afa0c5c9.shopify.com",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/db102448afa0c5c9fp=chrome",
-          "headers": {
-            "Host": "48afa0c5c9.shopify.com"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cz-smart1.t1n2.com",
+          "fingerprint": "firefox",
+          "publicKey": "gVeyusHnhoE_EPLshlFN9sAJ1Dp7j8hB3kvcDeOeYjA",
+          "shortId": "87898644116d7cca",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -170,16 +164,60 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "cz-smart1.t1n2.com",
+            "port": 443,
+            "users": [
+              {
+                "id": "5a51aefc-b13b-4072-a43b-b05eb1d34798",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cz-smart1.t1n2.com",
+          "fingerprint": "firefox",
+          "publicKey": "gVeyusHnhoE_EPLshlFN9sAJ1Dp7j8hB3kvcDeOeYjA",
+          "shortId": "87898644116d7cca",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -229,7 +267,7 @@
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [

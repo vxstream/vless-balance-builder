@@ -72,13 +72,14 @@
       "settings": {
         "vnext": [
           {
-            "address": "95.182.96.170",
-            "port": 1158,
+            "address": "api.yandex-api.org",
+            "port": 443,
             "users": [
               {
-                "id": "03223cd9-d81f-4851-b64b-9669525424b2",
+                "id": "983f75ad-5f86-439b-bdf7-45a2e4704c59",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -86,59 +87,14 @@
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "none",
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "95.182.96.170",
-            "port": 2082,
-            "users": [
-              {
-                "id": "03223cd9-d81f-4851-b64b-9669525424b2",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/ws",
-          "headers": {
-            "Host": "95.182.96.170"
-          }
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.yandex-api.org",
+          "fingerprint": "edge",
+          "publicKey": "IuvAXlAWBpeXehmEk0P-FIGTctUhny2H3UilbWWfJC0",
+          "shortId": "122218f4c1f172e4",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -158,16 +114,10 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-1",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -217,7 +167,7 @@
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -273,16 +223,16 @@
       }
     },
     {
-      "tag": "vless-4",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "rvg-production-94f3.up.railway.app",
+            "address": "ansooyefilter-channel.up.railway.app",
             "port": 443,
             "users": [
               {
-                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+                "id": "3aff2f4c-cbe7-b6f1-d1b2-86ad0a8d78c2",
                 "encryption": "none",
                 "level": 0
               }
@@ -294,19 +244,77 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "rvg-production-94f3.up.railway.app",
+          "serverName": "ansooyefilter-channel.up.railway.app",
           "allowInsecure": false,
-          "fingerprint": "chrome",
+          "fingerprint": "random",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
         "wsSettings": {
-          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+          "path": "/ws/3aff2f4c-cbe7-b6f1-d1b2-86ad0a8d78c2",
           "headers": {
-            "Host": "rvg-production-94f3.up.railway.app"
+            "Host": "ansooyefilter-channel.up.railway.app"
           }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "thomas.proxy.rlwy.net",
+            "port": 14600,
+            "users": [
+              {
+                "id": "88a318e6-23a6-467c-9f4f-5f6b7e009638",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "is1-ssl.mzstatic.com",
+          "fingerprint": "ios",
+          "publicKey": "djU-QitDuSHDB2MDuHH803jJhVSqGsi3X5WrZSIToGo",
+          "shortId": "da169aac",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
         },
         "sockopt": {
           "mark": 255,
@@ -340,11 +348,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "rvg-production-94f3.up.railway.app",
-            "port": 443,
+            "address": "thomas.proxy.rlwy.net",
+            "port": 14600,
             "users": [
               {
-                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+                "id": "88a318e6-23a6-467c-9f4f-5f6b7e009638",
                 "encryption": "none",
                 "level": 0
               }
@@ -353,22 +361,18 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "rvg-production-94f3.up.railway.app",
-          "allowInsecure": false,
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "is1-ssl.mzstatic.com",
           "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
+          "publicKey": "djU-QitDuSHDB2MDuHH803jJhVSqGsi3X5WrZSIToGo",
+          "shortId": "da169aac",
+          "spiderX": "/",
+          "show": false
         },
-        "wsSettings": {
-          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
-          "headers": {
-            "Host": "rvg-production-94f3.up.railway.app"
-          }
+        "xhttpSettings": {
+          "path": "/"
         },
         "sockopt": {
           "mark": 255,
@@ -402,7 +406,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "rvg-production-94f3.up.railway.app",
+            "address": "69.46.46.57",
             "port": 443,
             "users": [
               {
@@ -464,11 +468,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "69.46.46.34",
+            "address": "rvg-production-94f3.up.railway.app",
             "port": 443,
             "users": [
               {
-                "id": "b5f0b820-7f31-9e69-16af-aa2030d38bca",
+                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
                 "encryption": "none",
                 "level": 0
               }
@@ -480,18 +484,18 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "rvg-production-cae2.up.railway.app",
+          "serverName": "rvg-production-94f3.up.railway.app",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "chrome",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
         "wsSettings": {
-          "path": "/ws/b5f0b820-7f31-9e69-16af-aa2030d38bca",
+          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
           "headers": {
-            "Host": "rvg-production-cae2.up.railway.app"
+            "Host": "rvg-production-94f3.up.railway.app"
           }
         },
         "sockopt": {
@@ -522,6 +526,312 @@
     },
     {
       "tag": "vless-8",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "rvg-production-94f3.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-94f3.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+          "headers": {
+            "Host": "rvg-production-94f3.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-9",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "rvg-production-94f3.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-94f3.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+          "headers": {
+            "Host": "rvg-production-94f3.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-10",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "rvg-production-94f3.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-94f3.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+          "headers": {
+            "Host": "rvg-production-94f3.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-11",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "rvg-production-94f3.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-94f3.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/9983e0c4-c1b6-50f9-60dd-ef59f0f2d5d3",
+          "headers": {
+            "Host": "rvg-production-94f3.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-12",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "kodama.proxy.rlwy.net",
+            "port": 10190,
+            "users": [
+              {
+                "id": "@MAconnectt",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "is1-ssl.mzstatic.com",
+          "fingerprint": "chrome",
+          "publicKey": "3VLYfkiAd-6Lf2QAO44b85KBP0BtQDWORsdSkEdRaWs",
+          "shortId": "01f96a282febe792",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-13",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -583,7 +893,69 @@
       }
     },
     {
-      "tag": "vless-9",
+      "tag": "vless-14",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "rvg-production-cae2.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "b5f0b820-7f31-9e69-16af-aa2030d38bca",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "rvg-production-cae2.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/b5f0b820-7f31-9e69-16af-aa2030d38bca",
+          "headers": {
+            "Host": "rvg-production-cae2.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-15",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -645,16 +1017,16 @@
       }
     },
     {
-      "tag": "vless-10",
+      "tag": "vless-16",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "node-877017628-4d038b-production.up.railway.app",
+            "address": "rvg-production-cae2.up.railway.app",
             "port": 443,
             "users": [
               {
-                "id": "freetalavpn",
+                "id": "b5f0b820-7f31-9e69-16af-aa2030d38bca",
                 "encryption": "none",
                 "level": 0
               }
@@ -666,18 +1038,18 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "node-877017628-4d038b-production.up.railway.app",
+          "serverName": "rvg-production-cae2.up.railway.app",
           "allowInsecure": false,
-          "fingerprint": "chrome",
+          "fingerprint": "random",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
         "wsSettings": {
-          "path": "/ws/freetalavpn",
+          "path": "/ws/b5f0b820-7f31-9e69-16af-aa2030d38bca",
           "headers": {
-            "Host": "node-877017628-4d038b-production.up.railway.app"
+            "Host": "rvg-production-cae2.up.railway.app"
           }
         },
         "sockopt": {
@@ -707,16 +1079,16 @@
       }
     },
     {
-      "tag": "vless-11",
+      "tag": "vless-17",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "node-877017628-4d038b-production.up.railway.app",
+            "address": "rvg-production-cae2.up.railway.app",
             "port": 443,
             "users": [
               {
-                "id": "freetalavpn",
+                "id": "b5f0b820-7f31-9e69-16af-aa2030d38bca",
                 "encryption": "none",
                 "level": 0
               }
@@ -728,7 +1100,7 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "node-877017628-4d038b-production.up.railway.app",
+          "serverName": "rvg-production-cae2.up.railway.app",
           "allowInsecure": false,
           "fingerprint": "chrome",
           "alpn": [
@@ -737,9 +1109,9 @@
           ]
         },
         "wsSettings": {
-          "path": "/ws/freetalavpn",
+          "path": "/ws/b5f0b820-7f31-9e69-16af-aa2030d38bca",
           "headers": {
-            "Host": "node-877017628-4d038b-production.up.railway.app"
+            "Host": "rvg-production-cae2.up.railway.app"
           }
         },
         "sockopt": {
@@ -769,7 +1141,123 @@
       }
     },
     {
-      "tag": "vless-12",
+      "tag": "vless-18",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "hayabusa.proxy.rlwy.net",
+            "port": 13849,
+            "users": [
+              {
+                "id": "MAconnectt",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "is1-ssl.mzstatic.com",
+          "fingerprint": "chrome",
+          "publicKey": "hfSJIRWwEBssGJ5l8Dbr5unwB_XjC0NYG_CENwA63QY",
+          "shortId": "6e4275c0",
+          "spiderX": "/RM8bG4I0JkQ2tIZ",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-19",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "hayabusa.proxy.rlwy.net",
+            "port": 20967,
+            "users": [
+              {
+                "id": "MAconnectt",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "is1-ssl.mzstatic.com",
+          "fingerprint": "chrome",
+          "publicKey": "vpOVAPL0pGLgpugFQQbP2-7mOfv83PFoAPaeFwQaiRE",
+          "shortId": "94ee34955d",
+          "spiderX": "/oHL5uTiIho1SBlh",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-20",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -819,7 +1307,7 @@
       }
     },
     {
-      "tag": "vless-13",
+      "tag": "vless-21",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -874,527 +1362,34 @@
       }
     },
     {
-      "tag": "vless-14",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "95.182.96.170",
-            "port": 2082,
-            "users": [
-              {
-                "id": "03223cd9-d81f-4851-b64b-9669525424b2",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/ws",
-          "headers": {
-            "Host": "95.182.96.170"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-15",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "162.55.217.158",
-            "port": 8443,
-            "users": [
-              {
-                "id": "0970324b-8c61-4ae7-8c3f-385a6f1e17e4",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "vpn47.cc.cd",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "vpn47.cc.cd"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-16",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.27.61.92",
-            "port": 443,
-            "users": [
-              {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-17",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "217.60.63.44",
-            "port": 2053,
-            "users": [
-              {
-                "id": "0970324b-8c61-4ae7-8c3f-385a6f1e17e4",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "vpn47.cc.cd",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "vpn47.cc.cd"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-18",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.27.7.125",
-            "port": 443,
-            "users": [
-              {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-19",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.16.211.140",
-            "port": 443,
-            "users": [
-              {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-20",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.64.32.75",
-            "port": 443,
-            "users": [
-              {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-21",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.18.206.22",
-            "port": 443,
-            "users": [
-              {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
       "tag": "vless-22",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.18.206.22",
+            "address": "194.55.239.155",
             "port": 443,
             "users": [
               {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
+                "id": "69d5dc6d-26df-4ac4-9106-7dc6efb3a460",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "frrr.sishka.network",
+          "fingerprint": "firefox",
+          "publicKey": "HDITbyI2x0_Jyfwy0BX9wq0mngrv_rwPjqbfSMbm8WA",
+          "shortId": "bb3c91348c837866",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -1414,78 +1409,10 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-23",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.19.134.235",
-            "port": 443,
-            "users": [
-              {
-                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "amooaliii.net",
-          "allowInsecure": false,
-          "fingerprint": "chrome",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/jdhfyws",
-          "headers": {
-            "Host": "amooaliii.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-24",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -1547,12 +1474,74 @@
       }
     },
     {
+      "tag": "vless-24",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "49.12.237.71",
+            "port": 443,
+            "users": [
+              {
+                "id": "3c37d31e-9990-4c52-80fa-d971564d58c1",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "nova-atlas-core-609c.nova-c40b57.workers.dev",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/?u=73742dbc12",
+          "headers": {
+            "Host": "nova-atlas-core-609c.nova-c40b57.workers.dev"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
       "tag": "vless-25",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "104.19.134.235",
+            "address": "104.18.195.156",
             "port": 443,
             "users": [
               {
@@ -1614,7 +1603,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "108.162.192.75",
+            "address": "104.19.134.235",
             "port": 443,
             "users": [
               {
@@ -1632,7 +1621,7 @@
         "tlsSettings": {
           "serverName": "amooaliii.net",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "chrome",
           "alpn": [
             "h2",
             "http/1.1"
@@ -1676,7 +1665,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.18.195.156",
+            "address": "104.18.206.22",
             "port": 443,
             "users": [
               {
@@ -1800,7 +1789,131 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.18.45.137",
+            "address": "104.27.7.125",
+            "port": 443,
+            "users": [
+              {
+                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "amooaliii.net",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/jdhfyws",
+          "headers": {
+            "Host": "amooaliii.net"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-30",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "172.64.32.75",
+            "port": 443,
+            "users": [
+              {
+                "id": "72d1797c-cef8-410a-b8fd-db9104dc3cb0",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "amooaliii.net",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/jdhfyws",
+          "headers": {
+            "Host": "amooaliii.net"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-31",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "108.162.192.75",
             "port": 443,
             "users": [
               {
@@ -1828,6 +1941,68 @@
           "path": "/jdhfyws",
           "headers": {
             "Host": "amooaliii.net"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-32",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "217.60.63.44",
+            "port": 2053,
+            "users": [
+              {
+                "id": "0970324b-8c61-4ae7-8c3f-385a6f1e17e4",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "vpn47.cc.cd",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "vpn47.cc.cd"
           }
         },
         "sockopt": {
