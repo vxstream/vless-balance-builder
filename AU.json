@@ -72,53 +72,6 @@
       "settings": {
         "vnext": [
           {
-            "address": "213.108.3.228",
-            "port": 58443,
-            "users": [
-              {
-                "id": "315cd3a7-dbf8-4f98-93bd-110af8e89063",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "httpupgrade",
-        "security": "none",
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
             "address": "95.163.211.206",
             "port": 443,
             "users": [
@@ -164,7 +117,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-1",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -190,6 +143,56 @@
           "fingerprint": "firefox",
           "publicKey": "Ce2lAEqTi8rzssWrJshYik13BgBYrO1VUxmrbDWdtSY",
           "shortId": "fc4e3743",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "95.163.211.206",
+            "port": 443,
+            "users": [
+              {
+                "id": "b2b8bd00-2e42-4875-8d7b-bcf97093a1d4",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "at.sellflow.org",
+          "fingerprint": "firefox",
+          "publicKey": "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc",
+          "shortId": "",
           "spiderX": "/",
           "show": false
         },
