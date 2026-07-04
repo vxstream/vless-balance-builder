@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "95.182.93.237",
-            "port": 52077,
+            "address": "www.zsu.gov.ua",
+            "port": 443,
             "users": [
               {
-                "id": "681314c5-b3ee-41f1-a959-fa42841f5383",
+                "id": "04c808e2-0b59-47b0-a54b-32fc7ef1c902",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,18 +85,40 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yahoo.com",
-          "fingerprint": "firefox",
-          "publicKey": "PHBDzNOQhRFtN4bDJ6pOySCGlIA09CC_Josq13rTIwk",
-          "shortId": "a7f1b353c9e43d98",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "misaka.cndyw.ggff.net",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": ""
+        "wsSettings": {
+          "path": "/?ed=2560fp=random",
+          "headers": {
+            "Host": "misaka.cndyw.ggff.net"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
