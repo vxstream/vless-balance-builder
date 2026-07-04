@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "91.124.209.145",
-            "port": 8080,
+            "address": "185.137.232.194",
+            "port": 443,
             "users": [
               {
-                "id": "a9db7a1c-65eb-49e4-bcad-6a791efeb982",
+                "id": "addcd802-c4c1-0024-9f90-f4eaa5416127",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,13 +85,18 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/speedws",
-          "headers": {
-            "Host": "91.124.209.145"
-          }
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "aispir.ru",
+          "fingerprint": "firefox",
+          "publicKey": "kYwdZueXQt_DEKPrWTw8yoj6G4AWqupg8UrWjAgWbkE",
+          "shortId": "8ba6e72ee60667f6",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/assets"
         },
         "sockopt": {
           "mark": 255,
@@ -121,6 +126,64 @@
     },
     {
       "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.137.232.194",
+            "port": 443,
+            "users": [
+              {
+                "id": "addcd802-c4c1-002f-9f90-f4eaa5416127",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "aispir.ru",
+          "fingerprint": "firefox",
+          "publicKey": "kYwdZueXQt_DEKPrWTw8yoj6G4AWqupg8UrWjAgWbkE",
+          "shortId": "8ba6e72ee60667f6",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/assets"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -170,7 +233,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -220,69 +283,16 @@
       }
     },
     {
-      "tag": "vless-3",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.16.106.213",
-            "port": 8880,
-            "users": [
-              {
-                "id": "6b89f475-913c-4381-a102-f5e06a129685",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/pyip=ProxyIP.KR.CMLiussss.net",
-          "headers": {
-            "Host": "proud-dawn-56f1.125-85b.workers.dev"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
       "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "log.bpminecraft.com",
-            "port": 8880,
+            "address": "217.60.62.182",
+            "port": 8443,
             "users": [
               {
-                "id": "cf39cbf2-8926-43b5-ba3e-45b975019094",
+                "id": "0970324b-8c61-4ae7-8c3f-385a6f1e17e4",
                 "encryption": "none",
                 "level": 0
               }
@@ -292,11 +302,20 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "none",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "vpn47.cc.cd",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
         "wsSettings": {
-          "path": "/pyip=ProxyIP.US.CMLiussss.net",
+          "path": "/",
           "headers": {
-            "Host": "snowy-feather-39d3.428.workers.dev"
+            "Host": "vpn47.cc.cd"
           }
         },
         "sockopt": {
@@ -331,26 +350,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "162.159.140.78",
-            "port": 8880,
+            "address": "185.229.9.174",
+            "port": 443,
             "users": [
               {
-                "id": "142d1453-9cfe-4045-8e54-f3fb33342185",
+                "id": "372f1380-5430-4c35-b6a6-07157d20e1fe",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/pyip=ProxyIP.US.CMLiussss.net",
-          "headers": {
-            "Host": "lively-scene-744f.107-47a.workers.dev"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api-maps.yandex.ru",
+          "fingerprint": "firefox",
+          "publicKey": "zMyJW8uYeZwurz4xCcnnPjYlCVP0nI5BDHp_0ZrxPjk",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -370,12 +392,6 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -384,126 +400,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "www.baipiao.eu.org",
-            "port": 8880,
-            "users": [
-              {
-                "id": "4212034d-c18b-4060-b218-4f8372e5473a",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/pyip=ProxyIP.JP.CMLiussss.net",
-          "headers": {
-            "Host": "summer-hill-7f65.275-521.workers.dev"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-7",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "172.67.174.37",
-            "port": 8880,
-            "users": [
-              {
-                "id": "5a4d9f40-56db-402a-9fbc-31c9229bdcf6",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "172.67.174.37",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/pyip=ProxyIP.US.CMLiussss.net",
-          "headers": {
-            "Host": "floral-resonance-4baf.468.workers.dev"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-8",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.16.72.101",
+            "address": "104.16.72.70",
             "port": 443,
             "users": [
               {
-                "id": "0ac0a6f0-d3f0-47f1-8de4-ce785e515a5c",
+                "id": "659a9075-d5ab-4fd2-bf34-b37043fae832",
                 "encryption": "none",
                 "level": 0
               }
@@ -515,177 +416,18 @@
         "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "unnes.ac.id.yxls.eu.cc",
+          "serverName": "nbhhh.mrcool.kdns.fr",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "chrome",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
         "wsSettings": {
-          "path": "/ca-cl",
+          "path": "/proxyip",
           "headers": {
-            "Host": "unnes.ac.id.yxls.eu.cc"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-9",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "log.bpminecraft.com",
-            "port": 8880,
-            "users": [
-              {
-                "id": "b2c879ed-08a2-4a79-9c57-37c7db614e96",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/pyip=ProxyIP.KR.CMLiussss.net",
-          "headers": {
-            "Host": "sweet-cake-1340.474-288.workers.dev"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-10",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "104.16.106.213",
-            "port": 8880,
-            "users": [
-              {
-                "id": "73ae7d45-1046-4cc5-9741-199375b620f1",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "false",
-        "wsSettings": {
-          "path": "/pyip=ProxyIP.SG.CMLiussss.net",
-          "headers": {
-            "Host": "round-resonance-a84c.13-531.workers.dev"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-11",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "www.baipiao.eu.org",
-            "port": 8880,
-            "users": [
-              {
-                "id": "8c56b4af-4762-4299-a1f8-799790dbaac7",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/pyip",
-          "headers": {
-            "Host": "lively-lab-4fd2.150-6f7.workers.dev"
+            "Host": "nbhhh.mrcool.kdns.fr"
           }
         },
         "sockopt": {
