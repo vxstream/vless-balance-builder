@@ -72,29 +72,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "141.164.40.134",
+            "address": "x4g-production-984b.up.railway.app",
             "port": 443,
             "users": [
               {
-                "id": "bc13dd2d-cd06-4a88-bc30-eb7be1a4daf5",
+                "id": "a721bafd-16b9-344e-ba9b-1c0a1720cabc",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.intel.com",
-          "fingerprint": "chrome",
-          "publicKey": "qxy4zCquvCNLDB-XrmPMuzyj7zEQheolHvF5_lokd3o",
-          "shortId": "f24a61d246",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "x4g-production-984b.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "ios",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/a721bafd-16b9-344e-ba9b-1c0a1720cabc",
+          "headers": {
+            "Host": "x4g-production-984b.up.railway.app"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,6 +120,136 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "x4g-production-984b.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "a721bafd-16b9-344e-ba9b-1c0a1720cabc",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "x4g-production-984b.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/a721bafd-16b9-344e-ba9b-1c0a1720cabc",
+          "headers": {
+            "Host": "x4g-production-984b.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "x4g-production-984b.up.railway.app",
+            "port": 443,
+            "users": [
+              {
+                "id": "a721bafd-16b9-344e-ba9b-1c0a1720cabc",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "x4g-production-984b.up.railway.app",
+          "allowInsecure": false,
+          "fingerprint": "ios",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws/a721bafd-16b9-344e-ba9b-1c0a1720cabc",
+          "headers": {
+            "Host": "x4g-production-984b.up.railway.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
