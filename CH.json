@@ -72,13 +72,14 @@
       "settings": {
         "vnext": [
           {
-            "address": "centerbeam.proxy.rlwy.net",
-            "port": 22287,
+            "address": "72.5.42.70",
+            "port": 40443,
             "users": [
               {
-                "id": "3b45ea2c-e050-4da6-a2f0-cb9cc2e51699",
+                "id": "ab51054f-de76-4a0f-9f3a-b44c8df86a6c",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -88,11 +89,11 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "aws-us-east-1.amazon.com",
-          "fingerprint": "chrome",
-          "publicKey": "xVINf2LgTotqJIjILeT0fF8GNbELE4ohgeuyjKfwczM",
-          "shortId": "6e58c60b27eb",
-          "spiderX": "/x1chc8zX5t6RX8Z",
+          "serverName": "deepl.com",
+          "fingerprint": "firefox",
+          "publicKey": "6AOnobBShzL_N96JRBNMfbL84_3myz8ZbKfZUEqRXiY",
+          "shortId": "",
+          "spiderX": "/",
           "show": false
         },
         "sockopt": {
@@ -113,12 +114,56 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "162.33.177.100",
+            "port": 40443,
+            "users": [
+              {
+                "id": "ab51054f-de76-4a0f-9f3a-b44c8df86a6c",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
       },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "deepl.com",
+          "fingerprint": "firefox",
+          "publicKey": "6AOnobBShzL_N96JRBNMfbL84_3myz8ZbKfZUEqRXiY",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
