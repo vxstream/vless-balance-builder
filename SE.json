@@ -72,30 +72,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "yt-noads.sbrf-cdn342.ru",
-            "port": 443,
+            "address": "45.130.125.162",
+            "port": 2053,
             "users": [
               {
-                "id": "881cbd87-6cc3-41f9-9d4c-303fa2f8deab",
+                "id": "e7961655-9674-4cbd-a36f-ec0d5d7d660c",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
+        "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "shopper.applepie-recipe.ru",
+          "serverName": "po.fastbrokencompony.com",
           "allowInsecure": false,
-          "fingerprint": "qq",
+          "fingerprint": "firefox",
           "alpn": [
             "h2",
             "http/1.1"
           ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "po.fastbrokencompony.com"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -115,57 +120,12 @@
             }
           ]
         }
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "yt-noads.sbrf-cdn342.ru",
-            "port": 443,
-            "users": [
-              {
-                "id": "881cbd87-6cc3-41f9-9d4c-303fa2f8deab",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
       },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "shopper.applepie-recipe.ru",
-          "allowInsecure": false,
-          "fingerprint": "qq",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
