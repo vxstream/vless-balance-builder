@@ -72,79 +72,48 @@
       "settings": {
         "vnext": [
           {
-            "address": "jsengineer.org",
-            "port": 8443,
+            "address": "77.73.131.154",
+            "port": 443,
             "users": [
               {
-                "id": "aa28b265-baff-42e4-927e-7a8dee0ef623",
+                "id": "1f4c983e-382c-d2fa-b2dc-7981f02b34de",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "jsengineer.org",
-          "allowInsecure": false,
-          "fingerprint": "qq",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "grpcSettings": {
-          "serviceName": "grpc"
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "81.208.170.142",
-            "port": 1500,
-            "users": [
-              {
-                "id": "sGLzG6kUwBpZd73sW0nq",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
+        "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "www.ebay.com",
-          "fingerprint": "chrome",
-          "publicKey": "VQxVgczORkbSNdDrkNOYs6zMBINpViztTKDuWCeQsVE",
-          "shortId": "775eb6408888248e",
+          "serverName": "vindobona.org",
+          "fingerprint": "firefox",
+          "publicKey": "5GhMSJXQv1wXHVD999YHRRj83m-7VKH8qb_vTxBGbng",
+          "shortId": "08",
           "spiderX": "/",
           "show": false
         },
-        "grpcSettings": {
-          "serviceName": ""
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
