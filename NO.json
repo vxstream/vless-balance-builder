@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "144.31.128.199",
-            "port": 443,
+            "address": "bouquetberlin.org",
+            "port": 8443,
             "users": [
               {
-                "id": "8f0560ec-ba22-4431-a6a7-318dc59d5233",
+                "id": "453c3861-eaf4-4c60-94e0-e57a2c9d2fcf",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,56 +85,22 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "stashfuro-eweqee.ru",
-          "fingerprint": "firefox",
-          "publicKey": "qmQgs_yOloyjj9xqDjbaUqGlhWwp6ReBpBB99Qfi2CU",
-          "shortId": "0bc73dd1f045",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "bouquetberlin.org",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": "nexusGrpc"
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "144.31.128.56",
-            "port": 443,
-            "users": [
-              {
-                "id": "8f0560ec-ba22-4431-a6a7-318dc59d5233",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
+        "wsSettings": {
+          "path": "/vlessws",
+          "headers": {
+            "Host": "bouquetberlin.org"
           }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "33432ews-topology-gslb-yccdn.ru",
-          "fingerprint": "firefox",
-          "publicKey": "tSxNp48AuTUzqggANCWsR6v7bqlguCoVWk_YOUs36Ug",
-          "shortId": "bc8307f814",
-          "spiderX": "/",
-          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -154,6 +120,12 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
