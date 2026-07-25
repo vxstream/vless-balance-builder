@@ -72,42 +72,102 @@
       "settings": {
         "vnext": [
           {
-            "address": "5.231.80.219",
+            "address": "it02.myxasecure.space",
             "port": 443,
             "users": [
               {
-                "id": "c01c2da7-6977-4b53-a493-cda17fa61b4f",
+                "id": "06d44c57-8e1a-41f4-b9c4-65d35869e078",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "file.ax",
+          "serverName": "it02.myxasecure.space",
           "fingerprint": "firefox",
-          "publicKey": "ayE6OYhZPTadQ_3Q00PcvN99n7SfvmFU5yffGQVxMG0",
-          "shortId": "2387a1e00eca0913",
+          "publicKey": "OCLtjVdRxsou3429LRfjkDYgiAPs24TSgSeFZpChCEw",
+          "shortId": "d67ec5a8fc40ebea",
           "spiderX": "/",
           "show": false
         },
-        "grpcSettings": {
-          "serviceName": ""
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "it02.myxasecure.space",
+            "port": 443,
+            "users": [
+              {
+                "id": "06d44c57-8e1a-41f4-b9c4-65d35869e078",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "it02.myxasecure.space",
+          "fingerprint": "firefox",
+          "publicKey": "OCLtjVdRxsou3429LRfjkDYgiAPs24TSgSeFZpChCEw",
+          "shortId": "d67ec5a8fc40ebea",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
