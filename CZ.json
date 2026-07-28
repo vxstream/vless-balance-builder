@@ -89,7 +89,7 @@
         "security": "reality",
         "realitySettings": {
           "serverName": "dl.google.com",
-          "fingerprint": "firefox",
+          "fingerprint": "safari",
           "publicKey": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
           "shortId": "aa",
           "spiderX": "/",
@@ -129,7 +129,7 @@
         "security": "reality",
         "realitySettings": {
           "serverName": "dl.google.com",
-          "fingerprint": "edge",
+          "fingerprint": "firefox",
           "publicKey": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
           "shortId": "aa",
           "spiderX": "/",
@@ -192,11 +192,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "5.189.223.90",
-            "port": 9891,
+            "address": "www.zsu.gov.ua",
+            "port": 8880,
             "users": [
               {
-                "id": "884d811f-577b-421e-aabb-608660b0ecfa",
+                "id": "2756d45c-2d91-4783-8114-ad1e128799ba",
                 "encryption": "none",
                 "level": 0
               }
@@ -205,18 +205,40 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "dl.google.com",
-          "fingerprint": "safari",
-          "publicKey": "Dfgu8Ey0M8Hz4gXGZAwQ3H9jLt2HByVsjAOTWiuKDB0",
-          "shortId": "aa",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "www.zsu.gov.ua",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": "grpc-tunnel"
+        "wsSettings": {
+          "path": "/pyip=ProxyIP.SG.CMLiussss.net",
+          "headers": {
+            "Host": "blue-breeze-e33c.261.workers.dev"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
