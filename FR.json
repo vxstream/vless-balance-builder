@@ -2119,11 +2119,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.21.77.92",
-            "port": 8443,
+            "address": "188.68.218.160",
+            "port": 443,
             "users": [
               {
-                "id": "1ad37675-b4cf-42fa-9dc5-83fd35cd63cb",
+                "id": "6a773c97-63c1-462c-bd59-a10a2ccd90fb",
                 "encryption": "none",
                 "level": 0
               }
@@ -2132,22 +2132,78 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "xhttp",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "ad-020.fluxmxd18.info",
+          "serverName": "api.pushbyte.cc",
           "allowInsecure": false,
-          "fingerprint": "chrome",
+          "fingerprint": "edge",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "ad-020.fluxmxd18.info"
+        "xhttpSettings": {
+          "path": "/api/v2/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-41",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "37.9.4.128",
+            "port": 443,
+            "users": [
+              {
+                "id": "6a773c97-63c1-462c-bd59-a10a2ccd90fb",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
           }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "api1.madapp.cc",
+          "allowInsecure": false,
+          "fingerprint": "ios",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "xhttpSettings": {
+          "path": "/api/v2/"
         },
         "sockopt": {
           "mark": 255,
