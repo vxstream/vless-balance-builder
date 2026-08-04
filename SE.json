@@ -72,26 +72,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "72.56.7.195",
-            "port": 2200,
+            "address": "master-node.dylariz.ru",
+            "port": 443,
             "users": [
               {
-                "id": "31c2a8e8-0ab2-4f3f-8767-11f3a35d4228",
+                "id": "36347721-d014-4e22-8acd-c3b798f417a8",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/v1",
-          "headers": {
-            "Host": "72.56.7.195"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "master-node.dylariz.ru",
+          "fingerprint": "qq",
+          "publicKey": "4cG01BPepPVFkwZcHzXzVXEHhA72Seko8oFLcPIVEzM",
+          "shortId": "154ebd513e2751",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -111,12 +114,6 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -125,26 +122,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "72.56.7.195",
-            "port": 2200,
+            "address": "master-node.dylariz.ru",
+            "port": 443,
             "users": [
               {
-                "id": "31c2a8e8-0ab2-4f3f-8767-11f3a35d4228",
+                "id": "36347721-d014-7532-8acd-c3b798f417a8",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/v1",
-          "headers": {
-            "Host": "72.56.7.195"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "master-node.dylariz.ru",
+          "fingerprint": "qq",
+          "publicKey": "4cG01BPepPVFkwZcHzXzVXEHhA72Seko8oFLcPIVEzM",
+          "shortId": "154ebd513e2751",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -164,16 +164,60 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "reserve-node.dylariz.ru",
+            "port": 8443,
+            "users": [
+              {
+                "id": "36347721-d014-7532-8acd-c3b798f417a8",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "reserve-node.dylariz.ru",
+          "fingerprint": "qq",
+          "publicKey": "4cG01BPepPVFkwZcHzXzVXEHhA72Seko8oFLcPIVEzM",
+          "shortId": "f9db06260afa",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
