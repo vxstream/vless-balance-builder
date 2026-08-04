@@ -72,29 +72,31 @@
       "settings": {
         "vnext": [
           {
-            "address": "178.214.211.52",
+            "address": "89.47.55.4",
             "port": 443,
             "users": [
               {
-                "id": "15355fa6-97da-50ee-8194-3950e3b917a5",
+                "id": "fc03a9a8-ef0f-5794-e119-0c3b68b178e8",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
+        "network": "xhttp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "www.google.com",
-          "fingerprint": "firefox",
-          "publicKey": "1a2wyM1FELzNiPmJAYAx3Is4VN4UrefZbZhbMDZHt0U",
-          "shortId": "602c802a",
+          "serverName": "cdn.steamstatic.com",
+          "fingerprint": "chrome",
+          "publicKey": "sRTNjrosfFSiuQX7Yt7Ub5DJvFznfHSC3nlzFQ3H2WU",
+          "shortId": "",
           "spiderX": "/",
           "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
         },
         "sockopt": {
           "mark": 255,
@@ -114,6 +116,70 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "89.47.55.4",
+            "port": 443,
+            "users": [
+              {
+                "id": "fc03a9a8-ef0f-5794-e119-0c3b68b178e8",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cdn.steamstatic.com",
+          "fingerprint": "qq",
+          "publicKey": "sRTNjrosfFSiuQX7Yt7Ub5DJvFznfHSC3nlzFQ3H2WU",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
