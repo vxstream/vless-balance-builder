@@ -706,11 +706,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "176.108.253.116",
-            "port": 15565,
+            "address": "87.242.85.201",
+            "port": 35412,
             "users": [
               {
-                "id": "161773c8-6634-4f5c-98dd-8c1a6c6694ba",
+                "id": "bfa91d79-049c-41e1-be94-029397377150",
                 "encryption": "none",
                 "level": 0
               }
@@ -719,18 +719,25 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "iv.kommersant.ru",
-          "fingerprint": "firefox",
-          "publicKey": "5nRL3eh_pQWHdej0It-V9mOapVLSi4PgkgjG9iqhpSw",
-          "shortId": "a5bd715862513387",
-          "spiderX": "/",
-          "show": false
-        },
-        "grpcSettings": {
-          "serviceName": "grpc"
+        "network": "tcp",
+        "security": "none",
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
