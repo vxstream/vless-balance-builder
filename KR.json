@@ -72,26 +72,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "45.80.111.175",
-            "port": 8880,
+            "address": "213.226.112.19",
+            "port": 443,
             "users": [
               {
-                "id": "6ed59a5b-efef-4ddf-99f2-57d200caed47",
+                "id": "de34642f-21d7-49d2-a8ff-aad30750a929",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/cdn/assets/stream",
-          "headers": {
-            "Host": "cnd.poland.myfilecdn.com"
-          }
+        "network": "raw",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "id.pervye.ru",
+          "fingerprint": "firefox",
+          "publicKey": "y9hgkaFKFTgKL5PHsksGNKuSrd7jBysJ6rBHktu2k1o",
+          "shortId": "6ba85179e30d4fc2",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -111,12 +114,56 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "213.226.112.19",
+            "port": 443,
+            "users": [
+              {
+                "id": "de34642f-21d7-49d2-a8ff-aad30750a929",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
       },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
+      "streamSettings": {
+        "network": "raw",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "id.pervye.ru",
+          "fingerprint": "firefox",
+          "publicKey": "y9hgkaFKFTgKL5PHsksGNKuSrd7jBysJ6rBHktu2k1o",
+          "shortId": "6ba85179e30d4fc2",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
