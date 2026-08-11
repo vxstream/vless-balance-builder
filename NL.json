@@ -122,11 +122,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "95.85.251.116",
-            "port": 59631,
+            "address": "104.18.0.1",
+            "port": 443,
             "users": [
               {
-                "id": "22448df3-17f8-40a6-9199-babaca108b46",
+                "id": "3ccba794-1c6d-48a8-acf2-f5caf0e69d86",
                 "encryption": "none",
                 "level": 0
               }
@@ -135,18 +135,40 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "google.com",
-          "fingerprint": "firefox",
-          "publicKey": "bymilcd_vnDoof7qAq4QpFTm-hMeFPZwXPTMFXdasSg",
-          "shortId": "4b",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "all.speedtest03.ccwu.cc",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": ""
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "all.speedtest03.ccwu.cc"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
