@@ -72,26 +72,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.18.173.174",
-            "port": 80,
+            "address": "144.31.129.174",
+            "port": 443,
             "users": [
               {
-                "id": "53342b53-157e-4475-9f3a-40439434e689",
+                "id": "7170c66c-3c0b-03a2-acbb-01774a6b7179",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/?ed=2048",
-          "headers": {
-            "Host": "c.iamdt.dpdns.org"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "s3-fi-1.rucdn777.com",
+          "fingerprint": "firefox",
+          "publicKey": "GDlgvx8exl9BJ5dD2HSVqE2oUbZyZZOFX5EdnCn5j2M",
+          "shortId": "283f1c398542cccb",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -111,12 +114,56 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "144.31.129.174",
+            "port": 443,
+            "users": [
+              {
+                "id": "7170c66c-3c0b-0352-acbb-01774a6b7179",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
       },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "s3-fi-1.rucdn777.com",
+          "fingerprint": "firefox",
+          "publicKey": "GDlgvx8exl9BJ5dD2HSVqE2oUbZyZZOFX5EdnCn5j2M",
+          "shortId": "9748e0984bc655c9",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
