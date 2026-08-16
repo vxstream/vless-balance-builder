@@ -72,65 +72,6 @@
       "settings": {
         "vnext": [
           {
-            "address": "api.ferrin.uk",
-            "port": 443,
-            "users": [
-              {
-                "id": "fbd1bcab-3480-4344-b3da-ae42d728ef51",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "fbd1bcab.ferrin.uk",
-          "allowInsecure": false,
-          "fingerprint": "edge",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "xhttpSettings": {
-          "path": "/de"
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
             "address": "176.109.106.34",
             "port": 9888,
             "users": [
@@ -166,7 +107,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-1",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -206,7 +147,7 @@
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -246,7 +187,7 @@
       }
     },
     {
-      "tag": "vless-4",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -276,6 +217,59 @@
         },
         "grpcSettings": {
           "serviceName": "grpc-tunnel"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "72.56.7.195",
+            "port": 2200,
+            "users": [
+              {
+                "id": "31c2a8e8-0ab2-4f3f-8767-11f3a35d4228",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/v1",
+          "headers": {
+            "Host": "rzd.ru"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
