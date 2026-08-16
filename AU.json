@@ -72,13 +72,14 @@
       "settings": {
         "vnext": [
           {
-            "address": "46.250.240.80",
-            "port": 2053,
+            "address": "5.253.42.79",
+            "port": 13443,
             "users": [
               {
-                "id": "5c53b9e9-fbe8-4c50-a623-73cdafa3886b",
+                "id": "423b1d79-08c4-403f-9d5e-c541f791b55f",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -88,10 +89,10 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "www.cloudflare.com",
-          "fingerprint": "chrome",
-          "publicKey": "cevjPz2GmTrXDFXQbGizdN6t4c6m11kclJEf5nOHOTE",
-          "shortId": "52dfc493bb6b6c16",
+          "serverName": "auto.cendora.ru",
+          "fingerprint": "firefox",
+          "publicKey": "gc9oXe37KCCm3J1dJ03wdGsnxPBdeEkRPOvl_t-vfVM",
+          "shortId": "a7f3c91b2e6d84c0",
           "spiderX": "/",
           "show": false
         },
@@ -113,12 +114,6 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -169,6 +164,61 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "46.250.240.80",
+            "port": 2053,
+            "users": [
+              {
+                "id": "5c53b9e9-fbe8-4c50-a623-73cdafa3886b",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "cevjPz2GmTrXDFXQbGizdN6t4c6m11kclJEf5nOHOTE",
+          "shortId": "52dfc493bb6b6c16",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
