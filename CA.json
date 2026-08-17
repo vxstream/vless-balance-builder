@@ -213,11 +213,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "31.129.109.22",
-            "port": 2200,
+            "address": "66.90.93.74",
+            "port": 8444,
             "users": [
               {
-                "id": "56800be4-01d8-466d-8f63-6195932abea0",
+                "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
                 "encryption": "none",
                 "level": 0
               }
@@ -227,11 +227,20 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "none",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "gateway-v1.bosx.net",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
         "wsSettings": {
-          "path": "/v1",
+          "path": "/api/v1/connect",
           "headers": {
-            "Host": "rzd.ru"
+            "Host": "gateway-v1.bosx.net"
           }
         },
         "sockopt": {
@@ -266,11 +275,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "31.129.109.22",
-            "port": 2200,
+            "address": "66.90.93.74",
+            "port": 8444,
             "users": [
               {
-                "id": "56800be4-01d8-466d-8f63-6195932abea0",
+                "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
                 "encryption": "none",
                 "level": 0
               }
@@ -280,11 +289,20 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "none",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "gateway-v1.bosx.net",
+          "allowInsecure": false,
+          "fingerprint": "android",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
         "wsSettings": {
-          "path": "/v1",
+          "path": "/api/v1/connect",
           "headers": {
-            "Host": "rzd.ru"
+            "Host": "gateway-v1.bosx.net"
           }
         },
         "sockopt": {
@@ -320,7 +338,7 @@
         "vnext": [
           {
             "address": "66.90.93.74",
-            "port": 8445,
+            "port": 8444,
             "users": [
               {
                 "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
@@ -337,14 +355,14 @@
         "tlsSettings": {
           "serverName": "gateway-v1.bosx.net",
           "allowInsecure": false,
-          "fingerprint": "firefox",
+          "fingerprint": "qq",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
         "wsSettings": {
-          "path": "/api/v2/connect",
+          "path": "/api/v1/connect",
           "headers": {
             "Host": "gateway-v1.bosx.net"
           }
@@ -438,184 +456,7 @@
       }
     },
     {
-      "tag": "vless-8",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "31.129.109.22",
-            "port": 2200,
-            "users": [
-              {
-                "id": "56800be4-01d8-466d-8f63-6195932abea0",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/v1",
-          "headers": {
-            "Host": "rzd.ru"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-9",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "66.90.93.74",
-            "port": 8444,
-            "users": [
-              {
-                "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "gateway-v1.bosx.net",
-          "allowInsecure": false,
-          "fingerprint": "android",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/api/v1/connect",
-          "headers": {
-            "Host": "gateway-v1.bosx.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-10",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "66.90.93.74",
-            "port": 8444,
-            "users": [
-              {
-                "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "gateway-v1.bosx.net",
-          "allowInsecure": false,
-          "fingerprint": "qq",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "wsSettings": {
-          "path": "/api/v1/connect",
-          "headers": {
-            "Host": "gateway-v1.bosx.net"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-11",
+      "tag": "vless-7",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -677,7 +518,7 @@
       }
     },
     {
-      "tag": "vless-12",
+      "tag": "vless-8",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -739,7 +580,69 @@
       }
     },
     {
-      "tag": "vless-13",
+      "tag": "vless-9",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "66.90.93.74",
+            "port": 8445,
+            "users": [
+              {
+                "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "gateway-v1.bosx.net",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/api/v2/connect",
+          "headers": {
+            "Host": "gateway-v1.bosx.net"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-10",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -801,7 +704,7 @@
       }
     },
     {
-      "tag": "vless-14",
+      "tag": "vless-11",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -863,7 +766,7 @@
       }
     },
     {
-      "tag": "vless-15",
+      "tag": "vless-12",
       "protocol": "vless",
       "settings": {
         "vnext": [
