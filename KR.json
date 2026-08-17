@@ -72,29 +72,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "178.214.211.36",
-            "port": 443,
+            "address": "66.90.93.74",
+            "port": 8445,
             "users": [
               {
-                "id": "2cb6b4d9-0c74-45e2-a4fb-645bb8ac532a",
+                "id": "ccad147b-06f9-43f6-81cf-a0007094b373",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "rom2.o4ka-internet.com",
-          "fingerprint": "safari",
-          "publicKey": "V2JprbR_aJkS7uX6anyU3nrswGxdvDQT2HpY4WnzuC8",
-          "shortId": "5629431325884ff0",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "gateway-v1.bosx.net",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/api/v2/connect",
+          "headers": {
+            "Host": "gateway-v1.bosx.net"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,6 +120,12 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
