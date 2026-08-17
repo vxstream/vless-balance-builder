@@ -1271,32 +1271,29 @@
       "settings": {
         "vnext": [
           {
-            "address": "31.129.42.37",
+            "address": "45.131.212.52",
             "port": 443,
             "users": [
               {
-                "id": "0330ec44-8c9b-4473-8f07-d68e1f8d05cf",
+                "id": "5c22dd50-f75d-4cf5-ba53-721f91d8bfe1",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "api.datapull.cc",
-          "allowInsecure": false,
-          "fingerprint": "edge",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
-        "xhttpSettings": {
-          "path": "/api/v2/"
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "fr.sellflow.org",
+          "fingerprint": "firefox",
+          "publicKey": "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -1316,12 +1313,6 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -1349,11 +1340,61 @@
         "tlsSettings": {
           "serverName": "fr140.mechvpn.online",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "firefox",
           "alpn": [
             "h2",
             "http/1.1"
           ]
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-29",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "161.97.160.224",
+            "port": 443,
+            "users": [
+              {
+                "id": "b81b4d1b-7f20-48f1-82dc-d24bef898cab",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "passport.yandex.ru",
+          "fingerprint": "firefox",
+          "publicKey": "33zaT3jHXjtynSQ0Ucw9bK92-XH2zolJmuIeZ1XyZB0",
+          "shortId": "e6",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
