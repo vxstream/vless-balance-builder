@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "149.33.10.41",
-            "port": 48902,
+            "address": "meshbuzz.bond",
+            "port": 443,
             "users": [
               {
-                "id": "3e4d70e5-7ec9-48f9-a4e0-48c44c6063fd",
+                "id": "9f2f3e55-a8a6-40f3-aeb2-1061e9207d4d",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,18 +85,22 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "account.amd.com",
-          "fingerprint": "firefox",
-          "publicKey": "yq01VenWbLNvCjmrZsJG10sto7KfKezO8as1wHxeV1M",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "4fspx0q.uploodmusicmelody.ir",
+          "allowInsecure": false,
+          "fingerprint": "unsafe",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "xhttpSettings": {
-          "path": "/"
+        "wsSettings": {
+          "path": "/ws-at",
+          "headers": {
+            "Host": "4fspx0q.uploodmusicmelody.ir"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -130,11 +134,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "85.117.243.16",
+            "address": "meshbuzz.bond",
             "port": 443,
             "users": [
               {
-                "id": "94c15d29-e850-409e-88ff-6976257e80ba",
+                "id": "9f2f3e55-a8a6-40f3-aeb2-1061e9207d4d",
                 "encryption": "none",
                 "level": 0
               }
@@ -143,19 +147,77 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "ws",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "de6.gracefultun.xyz",
+          "serverName": "4fspx0q.uploodmusicmelody.ir",
           "allowInsecure": false,
-          "fingerprint": "firefox",
+          "fingerprint": "unsafe",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
-        "xhttpSettings": {
-          "path": "/assets/build/_app/immutable/chunks/stream-one/"
+        "wsSettings": {
+          "path": "/ws-at",
+          "headers": {
+            "Host": "4fspx0q.uploodmusicmelody.ir"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "46.250.240.80",
+            "port": 2053,
+            "users": [
+              {
+                "id": "5c53b9e9-fbe8-4c50-a623-73cdafa3886b",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "www.cloudflare.com",
+          "fingerprint": "chrome",
+          "publicKey": "cevjPz2GmTrXDFXQbGizdN6t4c6m11kclJEf5nOHOTE",
+          "shortId": "52dfc493bb6b6c16",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
