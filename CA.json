@@ -482,11 +482,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "fast.nanniang.top",
-            "port": 8443,
+            "address": "164.92.230.180",
+            "port": 8880,
             "users": [
               {
-                "id": "916e3030-6eac-418b-9402-7508ca7d6280",
+                "id": "603819a3-dd65-408a-abab-15d8dc49887f",
                 "encryption": "none",
                 "level": 0
               }
@@ -495,22 +495,87 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
+        "network": "tcp",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "aq.nanniang.top",
+          "serverName": "164.92.230.180",
           "allowInsecure": false,
-          "fingerprint": "chrome",
+          "fingerprint": "random",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
-        "wsSettings": {
-          "path": "/",
-          "headers": {
-            "Host": "aq.nanniang.top"
+        "tcpSettings": {
+          "header": {
+            "type": "http",
+            "request": {
+              "path": [
+                "/"
+              ],
+              "headers": {
+                "Host": [
+                  "store.steampowered.com"
+                ]
+              }
+            }
           }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-8",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "68.221.114.80",
+            "port": 2042,
+            "users": [
+              {
+                "id": "de2760d7-12ef-4aea-ad09-ff66180f4e38",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "68.221.114.80",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
         "sockopt": {
           "mark": 255,
