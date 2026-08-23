@@ -72,14 +72,13 @@
       "settings": {
         "vnext": [
           {
-            "address": "72.56.34.223",
-            "port": 15215,
+            "address": "65.109.211.136",
+            "port": 30551,
             "users": [
               {
-                "id": "2b3e8750-b944-42fc-b36e-ec2c64b48a98",
+                "id": "e951ae39-2240-40ca-be13-9f862c3de3ce",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
@@ -87,14 +86,15 @@
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "fi4.dataroute.biz",
-          "fingerprint": "android",
-          "publicKey": "dMTxDKG-2AERHjNbLh2Ky7vJHoLb0MjkDzOcS-fr4wY",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "65.109.211.136",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
         "sockopt": {
           "mark": 255,
@@ -114,160 +114,16 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "72.56.34.223",
-            "port": 15215,
-            "users": [
-              {
-                "id": "2b3e8750-b944-42fc-b36e-ec2c64b48a98",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "fi4.dataroute.biz",
-          "fingerprint": "edge",
-          "publicKey": "dMTxDKG-2AERHjNbLh2Ky7vJHoLb0MjkDzOcS-fr4wY",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-2",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "72.56.34.223",
-            "port": 15215,
-            "users": [
-              {
-                "id": "2b3e8750-b944-42fc-b36e-ec2c64b48a98",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "fi4.dataroute.biz",
-          "fingerprint": "firefox",
-          "publicKey": "dMTxDKG-2AERHjNbLh2Ky7vJHoLb0MjkDzOcS-fr4wY",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-3",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "72.56.34.223",
-            "port": 15215,
-            "users": [
-              {
-                "id": "2b3e8750-b944-42fc-b36e-ec2c64b48a98",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "fi4.dataroute.biz",
-          "fingerprint": "safari",
-          "publicKey": "dMTxDKG-2AERHjNbLh2Ky7vJHoLb0MjkDzOcS-fr4wY",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -326,56 +182,6 @@
         "concurrency": 8,
         "xudpConcurrency": 16,
         "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "se.vrsvpn.com",
-            "port": 443,
-            "users": [
-              {
-                "id": "0b9bcbc1-b289-4a64-86fa-a5b731b65384",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "web.max.ru",
-          "fingerprint": "qq",
-          "publicKey": "HUIUjR11K2-23-4Y-i51g9cun8etjfgaWW-h8AsEtEU",
-          "shortId": "45ba24f179ad1f26",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
       }
     },
     {
