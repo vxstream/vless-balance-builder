@@ -72,29 +72,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "46.8.21.145",
-            "port": 8443,
+            "address": "cfd.130209.xyz",
+            "port": 443,
             "users": [
               {
-                "id": "5be8d38b-cfe6-4a90-91a7-6a83bd8b98f4",
+                "id": "65c56e1f-5c41-40bc-b0b5-9346772476ca",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ru-msk-2.shadowshroom.org",
-          "fingerprint": "android",
-          "publicKey": "mcTCleRrD7jQqkeWUBLNtx05C8klSDFR1w-cUv8MPW4",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ukraine.142568.xyz",
+          "allowInsecure": false,
+          "fingerprint": "edge",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/assets/dist/app-update-payload.dat",
+          "headers": {
+            "Host": "ukraine.142568.xyz"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,106 +120,12 @@
             }
           ]
         }
-      }
-    },
-    {
-      "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "46.8.21.145",
-            "port": 8443,
-            "users": [
-              {
-                "id": "5be8d38b-cfe6-4a90-91a7-6a83bd8b98f4",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
       },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ru-msk-2.shadowshroom.org",
-          "fingerprint": "firefox",
-          "publicKey": "mcTCleRrD7jQqkeWUBLNtx05C8klSDFR1w-cUv8MPW4",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-2",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "46.8.21.145",
-            "port": 8443,
-            "users": [
-              {
-                "id": "5be8d38b-cfe6-4a90-91a7-6a83bd8b98f4",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ru-msk-2.shadowshroom.org",
-          "fingerprint": "safari",
-          "publicKey": "mcTCleRrD7jQqkeWUBLNtx05C8klSDFR1w-cUv8MPW4",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
