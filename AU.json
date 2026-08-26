@@ -72,14 +72,13 @@
       "settings": {
         "vnext": [
           {
-            "address": "cdn.nurcloud.org",
-            "port": 443,
+            "address": "5.181.21.9",
+            "port": 1079,
             "users": [
               {
-                "id": "8c47da55-d009-4ed7-9bd3-cb1b7d37c217",
+                "id": "c14cad69-10c2-41bc-b116-d865ad2c52c6",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
@@ -87,14 +86,15 @@
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "at.nurcloud.org",
-          "fingerprint": "firefox",
-          "publicKey": "UksqyimJXSHNTi9cfVP_qTnTdROFHGgXFQkCFXkNTVc",
-          "shortId": "2b5054e52ea0886a",
-          "spiderX": "/",
-          "show": false
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "5.181.21.9",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
         "sockopt": {
           "mark": 255,
@@ -114,60 +114,16 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "cdn.nurcloud.org",
-            "port": 443,
-            "users": [
-              {
-                "id": "8c47da55-d009-4ed7-9bd3-cb1b7d37c217",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "at.nurcloud.org",
-          "fingerprint": "ios",
-          "publicKey": "UksqyimJXSHNTi9cfVP_qTnTdROFHGgXFQkCFXkNTVc",
-          "shortId": "2b5054e52ea0886a",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
