@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "37.156.40.170",
-            "port": 22429,
+            "address": "tr.privatevip.ir",
+            "port": 2002,
             "users": [
               {
-                "id": "252e7311-477b-4713-96ec-30ee8bb5f694",
+                "id": "85b27fbd-33d6-4a3a-bf5b-c3cf97772893",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,15 +85,66 @@
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "yahoo.com",
-          "fingerprint": "firefox",
-          "publicKey": "zQyvCA14htTXnOkY3g-ca1cTTfHwPkM2jIiqZcDiRmU",
-          "shortId": "3d2dfbb925",
-          "spiderX": "/HWe6D0rrEuCePm4",
-          "show": false
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "tr.privatevip.ir"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "tr.privatevip.ir",
+            "port": 2500,
+            "users": [
+              {
+                "id": "85b27fbd-33d6-4a3a-bf5b-c3cf97772893",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/WS",
+          "headers": {
+            "Host": "tr.privatevip.ir"
+          }
         },
         "sockopt": {
           "mark": 255,
