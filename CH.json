@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "89.223.65.114",
-            "port": 56443,
+            "address": "142.250.130.106",
+            "port": 443,
             "users": [
               {
-                "id": "0dc3bd77-cf72-428e-bb56-5649a156b278",
+                "id": "710c3cc6-8047-41c7-bf53-d63c05ff4192",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,18 +85,40 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "5post-gate.x5.ru",
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fonts.gstatic.com",
+          "allowInsecure": false,
           "fingerprint": "firefox",
-          "publicKey": "RtKpP2TIwEN1FX1TsGuQrJYot3ojLguMcFLhyZdrdAQ",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": "grpc"
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "germany-511863217573.europe-west1.run.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
@@ -174,6 +196,68 @@
       "settings": {
         "vnext": [
           {
+            "address": "142.251.143.142",
+            "port": 443,
+            "users": [
+              {
+                "id": "710c3cc6-8047-41c7-bf53-d63c05ff4192",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "fonts.gstatic.com",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "germany-511863217573.europe-west1.run.app"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-3",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "translate.google.com",
             "port": 443,
             "users": [
@@ -228,6 +312,56 @@
         "concurrency": 8,
         "xudpConcurrency": 16,
         "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-4",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "93.123.85.225",
+            "port": 443,
+            "users": [
+              {
+                "id": "be3c103d-2c93-4f8e-adb9-2631537f80eb",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "d.tranzit-net.ru",
+          "fingerprint": "firefox",
+          "publicKey": "IAdOYYmEMPFAhpVUhqfML58AVtYPdAb71R_HAPf0N0k",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
