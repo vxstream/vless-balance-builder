@@ -128,6 +128,68 @@
       "settings": {
         "vnext": [
           {
+            "address": "94.183.224.53",
+            "port": 8443,
+            "users": [
+              {
+                "id": "23578a2c-2493-41f0-89ef-d7d3a7b85252",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "nl1.pad-service.com",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/nl1",
+          "headers": {
+            "Host": "nl1.pad-service.com"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "sa-aef7eaca981d2a80.sr-d8a007cac7ec657d.r.vpvpn.club",
             "port": 8443,
             "users": [
@@ -182,6 +244,56 @@
         "concurrency": 8,
         "xudpConcurrency": 16,
         "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-3",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "alca.foff.ch",
+            "port": 443,
+            "users": [
+              {
+                "id": "6db6b948-655f-4f68-a9e7-865050e05b31",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "alca.foff.ch",
+          "fingerprint": "edge",
+          "publicKey": "BS25qHJWxx0kqrcrnA41jOx9HSZTyRVs9tLx-R66oQ4",
+          "shortId": "9a8df4ee3fdf",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {

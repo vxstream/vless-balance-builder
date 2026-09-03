@@ -72,29 +72,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "46.8.209.118",
-            "port": 443,
+            "address": "94.183.224.53",
+            "port": 8443,
             "users": [
               {
-                "id": "adff89a7-bde7-4614-962a-4068a65a655e",
+                "id": "23578a2c-2493-41f0-89ef-d7d3a7b85252",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "d2-ee.cloud-cdn.xyz",
-          "fingerprint": "android",
-          "publicKey": "4C9KU3mBvc1uusC8ZUheHqIYAKkKlFDalP7QSL2cYHs",
-          "shortId": "7a3f9e2b1c8d4f6a",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "nl1.pad-service.com",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/nl1",
+          "headers": {
+            "Host": "nl1.pad-service.com"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,210 +120,16 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "46.8.209.118",
-            "port": 443,
-            "users": [
-              {
-                "id": "adff89a7-bde7-4614-962a-4068a65a655e",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "d2-ee.cloud-cdn.xyz",
-          "fingerprint": "chrome",
-          "publicKey": "4C9KU3mBvc1uusC8ZUheHqIYAKkKlFDalP7QSL2cYHs",
-          "shortId": "7a3f9e2b1c8d4f6a",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-2",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "46.8.209.118",
-            "port": 443,
-            "users": [
-              {
-                "id": "adff89a7-bde7-4614-962a-4068a65a655e",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "d2-ee.cloud-cdn.xyz",
-          "fingerprint": "firefox",
-          "publicKey": "4C9KU3mBvc1uusC8ZUheHqIYAKkKlFDalP7QSL2cYHs",
-          "shortId": "7a3f9e2b1c8d4f6a",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-3",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "46.8.209.118",
-            "port": 443,
-            "users": [
-              {
-                "id": "adff89a7-bde7-4614-962a-4068a65a655e",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "d2-ee.cloud-cdn.xyz",
-          "fingerprint": "ios",
-          "publicKey": "4C9KU3mBvc1uusC8ZUheHqIYAKkKlFDalP7QSL2cYHs",
-          "shortId": "7a3f9e2b1c8d4f6a",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-4",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "46.8.209.118",
-            "port": 443,
-            "users": [
-              {
-                "id": "adff89a7-bde7-4614-962a-4068a65a655e",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "d2-ee.cloud-cdn.xyz",
-          "fingerprint": "safari",
-          "publicKey": "4C9KU3mBvc1uusC8ZUheHqIYAKkKlFDalP7QSL2cYHs",
-          "shortId": "7a3f9e2b1c8d4f6a",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-5",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -376,6 +188,56 @@
         "concurrency": 8,
         "xudpConcurrency": 16,
         "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "alca.foff.ch",
+            "port": 443,
+            "users": [
+              {
+                "id": "6db6b948-655f-4f68-a9e7-865050e05b31",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "alca.foff.ch",
+          "fingerprint": "edge",
+          "publicKey": "BS25qHJWxx0kqrcrnA41jOx9HSZTyRVs9tLx-R66oQ4",
+          "shortId": "9a8df4ee3fdf",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
