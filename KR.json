@@ -72,39 +72,49 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.143.223.58",
-            "port": 2085,
+            "address": "50.7.249.170",
+            "port": 443,
             "users": [
               {
-                "id": "94248dca-e56b-424a-9232-401178a4f8f9",
+                "id": "cd3bb7d9-7df3-4644-ac05-c260990ac277",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "tcp",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "104.143.223.58",
+          "serverName": "pl1-ded.moritech.net",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "firefox",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
-        "grpcSettings": {
-          "serviceName": "vless"
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
@@ -113,39 +123,49 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.143.223.62",
-            "port": 2085,
+            "address": "50.7.249.170",
+            "port": 443,
             "users": [
               {
-                "id": "94248dca-e56b-424a-9232-401178a4f8f9",
+                "id": "cd3bb7d9-7df3-4644-ac05-c260990ac277",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "tcp",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "104.143.223.62",
+          "serverName": "pl1-ded.moritech.net",
           "allowInsecure": false,
-          "fingerprint": "random",
+          "fingerprint": "chrome",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
-        "grpcSettings": {
-          "serviceName": "vless"
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
