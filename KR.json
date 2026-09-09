@@ -72,49 +72,80 @@
       "settings": {
         "vnext": [
           {
-            "address": "50.7.249.178",
-            "port": 443,
+            "address": "104.143.223.58",
+            "port": 2085,
             "users": [
               {
-                "id": "cd3bb7d9-7df3-4644-ac05-c260990ac277",
+                "id": "94248dca-e56b-424a-9232-401178a4f8f9",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
+        "network": "grpc",
         "security": "tls",
         "tlsSettings": {
-          "serverName": "pl2-ded.moritech.net",
+          "serverName": "104.143.223.58",
           "allowInsecure": false,
-          "fingerprint": "chrome",
+          "fingerprint": "random",
           "alpn": [
             "h2",
             "http/1.1"
           ]
         },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
+        "grpcSettings": {
+          "serviceName": "vless"
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "104.143.223.62",
+            "port": 2085,
+            "users": [
+              {
+                "id": "94248dca-e56b-424a-9232-401178a4f8f9",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "104.143.223.62",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "grpcSettings": {
+          "serviceName": "vless"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
