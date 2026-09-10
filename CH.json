@@ -72,29 +72,32 @@
       "settings": {
         "vnext": [
           {
-            "address": "85.137.165.160",
-            "port": 443,
+            "address": "de.lunoa.ru",
+            "port": 8443,
             "users": [
               {
-                "id": "3c48b5f5-7766-4896-874e-b3ba1860e83a",
+                "id": "ef3595fb-72f4-430d-9bf8-fff90327903a",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "w-mebel.pro",
+        "network": "xhttp",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "de.lunoa.ru",
+          "allowInsecure": false,
           "fingerprint": "firefox",
-          "publicKey": "R7NfFaabgh-0a2KR0Bfmn3a-O6mDT550OgXUDygDKBs",
-          "shortId": "c603efb3ddaf633d",
-          "spiderX": "/",
-          "show": false
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "xhttpSettings": {
+          "path": "/assets/v1/"
         },
         "sockopt": {
           "mark": 255,
@@ -114,6 +117,70 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "ch-plr-xh-pilot.tcp-reset-club.net",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4fb82973-a7f1-4fc2-9958-cb21f5162f06",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "s3.netavex.com",
+          "fingerprint": "random",
+          "publicKey": "Gu_QdtOX6E8pZcYvDWgHKA5dxcit7hrpU27sizCEWXg",
+          "shortId": "e0",
+          "spiderX": "/",
+          "show": false
+        },
+        "xhttpSettings": {
+          "path": "/assets/v2/pkg"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
