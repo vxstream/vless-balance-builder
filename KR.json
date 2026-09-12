@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "89.47.55.8",
-            "port": 443,
+            "address": "170.168.97.8",
+            "port": 8443,
             "users": [
               {
-                "id": "3f9f2bda-0b9c-8469-7381-a73de2255619",
+                "id": "96b44347-cac5-cfae-383b-1724ae9b5aec",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,36 +85,18 @@
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
+        "network": "grpc",
         "security": "reality",
         "realitySettings": {
-          "serverName": "cdn.steamstatic.com",
+          "serverName": "www.hp.com",
           "fingerprint": "chrome",
-          "publicKey": "sRTNjrosfFSiuQX7Yt7Ub5DJvFznfHSC3nlzFQ3H2WU",
+          "publicKey": "QzFNQqkvBnDKIyjXUHJQe9jruaw9G5AV44vDC-qvnlo",
           "shortId": "",
           "spiderX": "/",
           "show": false
         },
-        "xhttpSettings": {
-          "path": "/"
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
+        "grpcSettings": {
+          "serviceName": "TunService"
         }
       },
       "mux": {
@@ -130,31 +112,30 @@
       "settings": {
         "vnext": [
           {
-            "address": "89.47.55.8",
+            "address": "poland-ded.moritech.net",
             "port": 443,
             "users": [
               {
-                "id": "3f9f2bda-0b9c-8469-7381-a73de2255619",
+                "id": "cd3bb7d9-7df3-4644-ac05-c260990ac277",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "xhttp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "cdn.steamstatic.com",
-          "fingerprint": "qq",
-          "publicKey": "sRTNjrosfFSiuQX7Yt7Ub5DJvFznfHSC3nlzFQ3H2WU",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "xhttpSettings": {
-          "path": "/"
+        "network": "tcp",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "poland-ded.moritech.net",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
         "sockopt": {
           "mark": 255,
@@ -174,12 +155,6 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
