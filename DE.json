@@ -72,6 +72,46 @@
       "settings": {
         "vnext": [
           {
+            "address": "170.168.99.8",
+            "port": 8443,
+            "users": [
+              {
+                "id": "4350213a-b4e7-262a-0bd7-bd16957cf71a",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cdn.steamstatic.com",
+          "fingerprint": "chrome",
+          "publicKey": "R8Mogel1wypEIpcUXnGmG1cuzT9POghNhqJcw4-CLx0",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "grpcSettings": {
+          "serviceName": "TunService"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "89.47.55.9",
             "port": 443,
             "users": [
@@ -89,7 +129,7 @@
         "security": "reality",
         "realitySettings": {
           "serverName": "download.intel.com",
-          "fingerprint": "chrome",
+          "fingerprint": "firefox",
           "publicKey": "tl7xSwczBM--oN16cxdLnAD8GMf8tA0f-FXE9ilCCjA",
           "shortId": "",
           "spiderX": "/",
@@ -97,6 +137,108 @@
         },
         "xhttpSettings": {
           "path": "/"
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "170.168.99.8",
+            "port": 8443,
+            "users": [
+              {
+                "id": "dca76b88-b038-e82b-45e1-1d76b476d7ca",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cdn.steamstatic.com",
+          "fingerprint": "chrome",
+          "publicKey": "R8Mogel1wypEIpcUXnGmG1cuzT9POghNhqJcw4-CLx0",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "grpcSettings": {
+          "serviceName": "TunService"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-3",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "185.178.208.176",
+            "port": 443,
+            "users": [
+              {
+                "id": "bcda0cc3-ca23-4cee-8b6b-daf8bc055018",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "founders-blog.online",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/stream/615428/socket",
+          "headers": {
+            "Host": "founders-blog.online"
+          }
         },
         "sockopt": {
           "mark": 255,
