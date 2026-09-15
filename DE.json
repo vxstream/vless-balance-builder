@@ -72,14 +72,13 @@
       "settings": {
         "vnext": [
           {
-            "address": "138.124.85.131",
-            "port": 443,
+            "address": "45.151.182.218",
+            "port": 17443,
             "users": [
               {
-                "id": "2715cc81-4016-4fa4-8f24-1807f677f57a",
+                "id": "dd8ecb64-ab2d-46a4-ab1e-3b033f7accf1",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
@@ -89,10 +88,10 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "swosa.xanka.best",
+          "serverName": "api-maps.yandex.ru",
           "fingerprint": "firefox",
-          "publicKey": "-nBcOxZ4iXgJ0jvNHAxviUGtIInZKn1NrH4Wz4XObGE",
-          "shortId": "286c5dd8",
+          "publicKey": "blwPVUA8yK21XP6g_Z400DbRNmur8o18srBKpEFHYHg",
+          "shortId": "5528c395ccf1ad14",
           "spiderX": "/",
           "show": false
         },
@@ -114,6 +113,74 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "95.129.236.239",
+            "port": 443,
+            "users": [
+              {
+                "id": "b206c635-e928-4a0d-9b84-1bc5b78546f5",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "login.ansable.cc",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/stream/615428/socket",
+          "headers": {
+            "Host": "login.ansable.cc"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
