@@ -67,34 +67,40 @@
   ],
   "outbounds": [
     {
-      "tag": "vless-4",
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "36.151.187.225",
-            "port": 12884,
+            "address": "95.129.236.239",
+            "port": 443,
             "users": [
               {
-                "id": "16b3793b-3335-4832-b1fd-877b2c5e15d6",
+                "id": "4f74a652-5ce0-40a8-93ac-c421568cd3aa",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.spotify.com",
-          "fingerprint": "firefox",
-          "publicKey": "PZId4C7clCYYpoK4vHV9hJ7BNEz4J4tHxGicMeasriQ",
-          "shortId": "1b6028",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "wiki.solarinfra.net",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/stream/615428/socket",
+          "headers": {
+            "Host": "wiki.solarinfra.net"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,106 +120,12 @@
             }
           ]
         }
-      }
-    },
-    {
-      "tag": "vless-5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "36.151.187.225",
-            "port": 12884,
-            "users": [
-              {
-                "id": "16b3793b-3335-4832-b1fd-877b2c5e15d6",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
       },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.spotify.com",
-          "fingerprint": "qq",
-          "publicKey": "PZId4C7clCYYpoK4vHV9hJ7BNEz4J4tHxGicMeasriQ",
-          "shortId": "1b6028",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-6",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "36.151.187.225",
-            "port": 12884,
-            "users": [
-              {
-                "id": "16b3793b-3335-4832-b1fd-877b2c5e15d6",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.spotify.com",
-          "fingerprint": "safari",
-          "publicKey": "PZId4C7clCYYpoK4vHV9hJ7BNEz4J4tHxGicMeasriQ",
-          "shortId": "1b6028",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {

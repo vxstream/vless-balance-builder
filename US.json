@@ -67,31 +67,34 @@
   ],
   "outbounds": [
     {
-      "tag": "vless-15",
+      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "162.35.96.21",
-            "port": 8081,
+            "address": "193.233.91.200",
+            "port": 443,
             "users": [
               {
-                "id": "54ee5e59-55a3-4599-83ff-0c67b3f411b2",
+                "id": "0cd84588-2ad1-4c69-ab82-1d3f93d5faa8",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/vless-test",
-          "headers": {
-            "Host": "162.35.96.21"
-          }
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cdn.callibri.ru",
+          "fingerprint": "chrome",
+          "publicKey": "yCKV2xr725jI0sFhm4KbttKl8b9UZrnQTXxZLN2S4BM",
+          "shortId": "2f86",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -111,12 +114,106 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-5",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "193.233.91.200",
+            "port": 443,
+            "users": [
+              {
+                "id": "0cd84588-2ad1-4c69-ab82-1d3f93d5faa8",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
       },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cdn.callibri.ru",
+          "fingerprint": "firefox",
+          "publicKey": "yCKV2xr725jI0sFhm4KbttKl8b9UZrnQTXxZLN2S4BM",
+          "shortId": "2f86",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-6",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "193.233.91.200",
+            "port": 443,
+            "users": [
+              {
+                "id": "17f6daad-7238-4c23-99f6-c01e09c83dde",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "cdn.callibri.ru",
+          "fingerprint": "safari",
+          "publicKey": "yCKV2xr725jI0sFhm4KbttKl8b9UZrnQTXxZLN2S4BM",
+          "shortId": "f267",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
