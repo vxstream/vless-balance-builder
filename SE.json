@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "34.156.242.126",
+            "address": "mrs.sepporated.com",
             "port": 443,
             "users": [
               {
-                "id": "d4d1b597-2769-465b-b7fa-c2b84393d3ee",
+                "id": "218ae360-0e5f-4856-91f3-1823adfc9037",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,15 +85,22 @@
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "www.cloudflare.com",
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "mrs.sepporated.com",
+          "allowInsecure": false,
           "fingerprint": "random",
-          "publicKey": "OQ0MKzP5TYtlJCteckb25tD6USBH__D1z28Y8BOcdG4",
-          "shortId": "b4f2c0e3d8668c2f",
-          "spiderX": "/",
-          "show": false
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/ws",
+          "headers": {
+            "Host": "mrs.sepporated.com"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -127,11 +134,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "mrs.sepporated.com",
-            "port": 443,
+            "address": "162.35.96.18",
+            "port": 8081,
             "users": [
               {
-                "id": "218ae360-0e5f-4856-91f3-1823adfc9037",
+                "id": "54ee5e59-55a3-4599-83ff-0c67b3f411b2",
                 "encryption": "none",
                 "level": 0
               }
@@ -141,20 +148,64 @@
       },
       "streamSettings": {
         "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "mrs.sepporated.com",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
-        },
+        "security": "none",
         "wsSettings": {
-          "path": "/ws",
+          "path": "/vless-test",
           "headers": {
-            "Host": "mrs.sepporated.com"
+            "Host": "162.35.96.18"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "162.35.96.39",
+            "port": 8081,
+            "users": [
+              {
+                "id": "54ee5e59-55a3-4599-83ff-0c67b3f411b2",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/vless-test",
+          "headers": {
+            "Host": "162.35.96.39"
           }
         },
         "sockopt": {
