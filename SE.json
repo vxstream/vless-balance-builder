@@ -172,29 +172,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "sczznmbbbzgwlwzdhsql.jiedddym.com",
-            "port": 62638,
+            "address": "185.105.108.92",
+            "port": 8443,
             "users": [
               {
-                "id": "17ab31f7-c021-4aec-83b2-ab48de8886bd",
+                "id": "c18b978e-1c4e-415c-8bea-07942b563a64",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "addons.mozilla.org",
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "shuma.ccwu.cc",
+          "allowInsecure": false,
           "fingerprint": "chrome",
-          "publicKey": "PhXLfJ4s8EPauWaeRpzAjSuZibhmMiZFEMr8h8qU6iI",
-          "shortId": "d1f38c0f15ed22",
-          "spiderX": "/",
-          "show": false
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "shuma.ccwu.cc"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -214,6 +220,12 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {

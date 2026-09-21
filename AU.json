@@ -72,6 +72,57 @@
       "settings": {
         "vnext": [
           {
+            "address": "107.161.160.23",
+            "port": 443,
+            "users": [
+              {
+                "id": "cdd6bfce-781a-4454-b7d5-4778abb5c24f",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "kama2.api3-max.ru",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "kama2.api3-max.ru",
             "port": 443,
             "users": [
@@ -115,6 +166,68 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "103.200.28.113",
+            "port": 8443,
+            "users": [
+              {
+                "id": "c18b978e-1c4e-415c-8bea-07942b563a64",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "shuma.ccwu.cc",
+          "allowInsecure": false,
+          "fingerprint": "chrome",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "shuma.ccwu.cc"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {

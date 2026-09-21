@@ -72,6 +72,56 @@
       "settings": {
         "vnext": [
           {
+            "address": "45.140.205.2",
+            "port": 443,
+            "users": [
+              {
+                "id": "c795bdd5-0460-42bd-927b-fbff154d2ab5",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "promo.ch.iki-servers.com",
+          "fingerprint": "random",
+          "publicKey": "he6F0xhRgRSY0qekzzUoFHroztc6V06CpJ5UfSSlxmg",
+          "shortId": "",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "185.141.33.2",
             "port": 443,
             "users": [
@@ -107,7 +157,7 @@
       }
     },
     {
-      "tag": "vless-1",
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -147,7 +197,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -187,7 +237,7 @@
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -227,16 +277,16 @@
       }
     },
     {
-      "tag": "vless-4",
+      "tag": "vless-5",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "nl.node-edge09.com",
+            "address": "109.172.8.37",
             "port": 443,
             "users": [
               {
-                "id": "ddf09ad0-02dc-485b-9048-1038de5bebf0",
+                "id": "c18b978e-1c4e-415c-8bea-07942b563a64",
                 "encryption": "none",
                 "level": 0
               }
@@ -245,18 +295,93 @@
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "nl.node-edge09.com",
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "shuma.ccwu.cc",
+          "allowInsecure": false,
           "fingerprint": "chrome",
-          "publicKey": "S6t9-gOX2mxWKNGvGSJ8NxDdlJy78d4gN2-wv2d0hFw",
-          "shortId": "8319913f2e5f5711",
-          "spiderX": "/",
-          "show": false
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
         },
-        "grpcSettings": {
-          "serviceName": "grpc"
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "shuma.ccwu.cc"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-6",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "platform109.golnamakcert.top",
+            "port": 80,
+            "users": [
+              {
+                "id": "e13cf851-b4fd-413b-8d49-146e6eb8e5d4",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/platform109",
+          "headers": {
+            "Host": "platform109.halalkhor.info"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
       },
       "mux": {
