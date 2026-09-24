@@ -72,29 +72,35 @@
       "settings": {
         "vnext": [
           {
-            "address": "5.78.159.214",
-            "port": 80,
+            "address": "blog.cloudflare.com",
+            "port": 2095,
             "users": [
               {
-                "id": "52ecd83b-b6c1-41ee-bc36-049755bd33d2",
+                "id": "86c50e3a-5b87-49dd-bd20-03c7f2735e40",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "5.78.159.214",
-          "fingerprint": "chrome",
-          "publicKey": "NTXb7QGg9EyPkpG-7lmBNNaqf4473p_l8ITmTH-xmHg",
-          "shortId": "0db5c018ed7bb596",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "blog.cloudflare.com",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "llm-api.sofurry.dpdns.org"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,6 +120,12 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
@@ -122,7 +134,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "141.101.122.147",
             "port": 443,
             "users": [
               {
@@ -140,7 +152,7 @@
         "tlsSettings": {
           "serverName": "a.cwvps.eu.org",
           "allowInsecure": false,
-          "fingerprint": "unsafe",
+          "fingerprint": "chrome",
           "alpn": [
             "h2",
             "http/1.1"
@@ -184,7 +196,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.21.70.21",
+            "address": "141.101.122.147",
             "port": 443,
             "users": [
               {
@@ -202,7 +214,7 @@
         "tlsSettings": {
           "serverName": "a.cwvps.eu.org",
           "allowInsecure": false,
-          "fingerprint": "unsafe",
+          "fingerprint": "chrome",
           "alpn": [
             "h2",
             "http/1.1"
@@ -246,7 +258,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "188.114.97.6",
+            "address": "104.16.10.2",
             "port": 443,
             "users": [
               {
@@ -271,7 +283,7 @@
           ]
         },
         "wsSettings": {
-          "path": "/ws#/?TELEGRAM--MARAMBASHI--MARAMBASHI?ed=512",
+          "path": "/ws",
           "headers": {
             "Host": "a.cwvps.eu.org"
           }
