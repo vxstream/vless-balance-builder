@@ -72,29 +72,26 @@
       "settings": {
         "vnext": [
           {
-            "address": "130.49.188.4",
-            "port": 443,
+            "address": "www.csgo.net",
+            "port": 2095,
             "users": [
               {
-                "id": "85261643-2fd5-4889-8da9-43abc3c08405",
+                "id": "86c50e3a-5b87-49dd-bd20-03c7f2735e40",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "lk.s.dn.iki-servers.com",
-          "fingerprint": "chrome",
-          "publicKey": "GW-DWwk3vtXtXBEqQxY_Cf83JIisyyk34rUrtkMZ90g",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/",
+          "headers": {
+            "Host": "museai.sofurry.dpdns.org"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -114,6 +111,12 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
@@ -122,11 +125,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "se6-node.rumedia-cdn.com",
-            "port": 2096,
+            "address": "161.104.38.98",
+            "port": 443,
             "users": [
               {
-                "id": "11d826ce-d6e5-4154-8658-6829bb17dca2",
+                "id": "553d8193-d897-0024-bb46-f075b670f22a",
                 "encryption": "none",
                 "level": 0
               }
@@ -135,22 +138,18 @@
         ]
       },
       "streamSettings": {
-        "network": "ws",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "st90059.rumedia-cdn.com",
-          "allowInsecure": false,
-          "fingerprint": "safari",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
+        "network": "xhttp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "donatov.net",
+          "fingerprint": "chrome",
+          "publicKey": "kYwdZueXQt_DEKPrWTw8yoj6G4AWqupg8UrWjAgWbkE",
+          "shortId": "8ba6e72ee60667f6",
+          "spiderX": "/",
+          "show": false
         },
-        "wsSettings": {
-          "path": "/cdn/v3/live",
-          "headers": {
-            "Host": "st90059.rumedia-cdn.com"
-          }
+        "xhttpSettings": {
+          "path": "/assets"
         },
         "sockopt": {
           "mark": 255,
@@ -180,46 +179,6 @@
     },
     {
       "tag": "vless-2",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "191.44.114.66",
-            "port": 443,
-            "users": [
-              {
-                "id": "718b9643-20e3-4f9e-9f8d-87ce6801d55e",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "grpc",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ai.android",
-          "fingerprint": "edge",
-          "publicKey": "uE1WBdW9se1rQnx8Vh-a1jjaehzK-iUmCVrPui5KU3g",
-          "shortId": "53499a662395",
-          "spiderX": "/",
-          "show": false
-        },
-        "grpcSettings": {
-          "serviceName": ""
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -277,7 +236,7 @@
       }
     },
     {
-      "tag": "vless-4",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -335,7 +294,7 @@
       }
     },
     {
-      "tag": "vless-5",
+      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -358,64 +317,6 @@
         "realitySettings": {
           "serverName": "donatov.net",
           "fingerprint": "ios",
-          "publicKey": "kYwdZueXQt_DEKPrWTw8yoj6G4AWqupg8UrWjAgWbkE",
-          "shortId": "8ba6e72ee60667f6",
-          "spiderX": "/",
-          "show": false
-        },
-        "xhttpSettings": {
-          "path": "/assets"
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-6",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "161.104.38.98",
-            "port": 443,
-            "users": [
-              {
-                "id": "553d8193-d897-0024-bb46-f075b670f22a",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "xhttp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "donatov.net",
-          "fingerprint": "random",
           "publicKey": "kYwdZueXQt_DEKPrWTw8yoj6G4AWqupg8UrWjAgWbkE",
           "shortId": "8ba6e72ee60667f6",
           "spiderX": "/",
