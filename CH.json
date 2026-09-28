@@ -72,11 +72,11 @@
       "settings": {
         "vnext": [
           {
-            "address": "85.115.209.170",
-            "port": 2018,
+            "address": "153.76.185.153",
+            "port": 3090,
             "users": [
               {
-                "id": "834e5553-d80e-4078-8d7e-482fafe9bbaf",
+                "id": "3afa6b6d-e8d1-4931-878d-8a28b328256b",
                 "encryption": "none",
                 "level": 0
               }
@@ -85,33 +85,10 @@
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "gemini.com",
-          "fingerprint": "chrome",
-          "publicKey": "Sn8z3wbt2Zpoo3mO3HLW6TZTjN8231Ylka7apFNb2X0",
-          "shortId": "cd5f260bcdd9c92d",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "vless"
         }
       },
       "mux": {
@@ -123,6 +100,38 @@
     },
     {
       "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "194.87.59.22",
+            "port": 2085,
+            "users": [
+              {
+                "id": "ac9da12b-8c05-45d0-a05c-7ddbd57a3952",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "grpc",
+        "security": "none",
+        "grpcSettings": {
+          "serviceName": "vless"
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -172,7 +181,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
