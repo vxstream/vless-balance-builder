@@ -72,30 +72,48 @@
       "settings": {
         "vnext": [
           {
-            "address": "104.143.223.220",
-            "port": 2085,
+            "address": "ee174.mech-pro.online",
+            "port": 443,
             "users": [
               {
-                "id": "29af4c23-f998-4301-ae03-e174fd9075a7",
+                "id": "a15d1b88-e3f4-4f4d-9c04-462a2965a60a",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
-        "security": "none",
-        "grpcSettings": {
-          "serviceName": "vless"
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "ee174.mech-pro.online",
+          "fingerprint": "firefox",
+          "publicKey": "jbiddtGRgeBvlkjbuA3aU-WPjKgEX87tOVh1mFfvOUI",
+          "shortId": "16e0f049",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
