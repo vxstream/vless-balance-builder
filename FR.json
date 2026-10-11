@@ -184,7 +184,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "84.200.62.53",
+            "address": "84.200.62.51",
             "port": 443,
             "users": [
               {
@@ -234,7 +234,7 @@
       "settings": {
         "vnext": [
           {
-            "address": "84.200.62.56",
+            "address": "de2.my-cdn.org",
             "port": 443,
             "users": [
               {
@@ -284,56 +284,6 @@
       "settings": {
         "vnext": [
           {
-            "address": "de2.my-cdn.org",
-            "port": 443,
-            "users": [
-              {
-                "id": "249cce58-48ab-49a0-8aa1-fb8cd68a1104",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "de2.my-cdn.org",
-          "fingerprint": "random",
-          "publicKey": "4EUWyCLFjgb-cDwj8ws2nC82mCY_L5VvoCia7mHPH2o",
-          "shortId": "adbbecad",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-5",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
             "address": "62.113.210.10",
             "port": 443,
             "users": [
@@ -379,34 +329,102 @@
       }
     },
     {
+      "tag": "vless-5",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "ops5.localip.ir",
+            "port": 2087,
+            "users": [
+              {
+                "id": "a5db5ab5-8d28-49c0-ad55-0ad4724e5c0d",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ops5.localip.ir",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/hokm",
+          "headers": {
+            "Host": "ops5.localip.ir"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
       "tag": "vless-6",
       "protocol": "vless",
       "settings": {
         "vnext": [
           {
-            "address": "de-5.gigobingo.ru",
-            "port": 443,
+            "address": "ops5.localip.ir",
+            "port": 2087,
             "users": [
               {
-                "id": "3e0c1fbf-467a-49d7-abd2-3a158628f3d0",
+                "id": "a5db5ab5-8d28-49c0-ad55-0ad4724e5c0d",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "de-5.gigobingo.ru",
-          "fingerprint": "firefox",
-          "publicKey": "Aj6Op88j_eYXxoBw095KS_NnKCBm5uwa874uumXdiDQ",
-          "shortId": "ef7c4e4302bd52d7",
-          "spiderX": "/",
-          "show": false
+        "network": "ws",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "ops5.localip.ir",
+          "allowInsecure": false,
+          "fingerprint": "random",
+          "alpn": [
+            "h2",
+            "http/1.1"
+          ]
+        },
+        "wsSettings": {
+          "path": "/hokm",
+          "headers": {
+            "Host": "ops5.localip.ir"
+          }
         },
         "sockopt": {
           "mark": 255,
@@ -426,60 +444,16 @@
             }
           ]
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-7",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "108.165.164.116",
-            "port": 443,
-            "users": [
-              {
-                "id": "accfae78-b31c-47cb-86a1-bb9a07973e4a",
-                "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "google.com",
-          "fingerprint": "firefox",
-          "publicKey": "ct5Ou2ytVFMV9sjnYGpGJEXoXpjSi1xmA8daVuQ4ACg",
-          "shortId": "34afcbcff174d156",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "tag": "vless-8",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -541,7 +515,7 @@
       }
     },
     {
-      "tag": "vless-9",
+      "tag": "vless-8",
       "protocol": "vless",
       "settings": {
         "vnext": [
