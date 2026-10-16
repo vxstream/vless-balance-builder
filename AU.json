@@ -72,13 +72,14 @@
       "settings": {
         "vnext": [
           {
-            "address": "45.138.100.248",
-            "port": 10443,
+            "address": "117.55.194.76",
+            "port": 443,
             "users": [
               {
-                "id": "ae908ff5-f749-402c-af25-e6e9aef4d6bb",
+                "id": "e5544327-834c-455a-9db5-2454c788fa17",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -86,15 +87,14 @@
       },
       "streamSettings": {
         "network": "tcp",
-        "security": "tls",
-        "tlsSettings": {
-          "serverName": "45.138.100.248",
-          "allowInsecure": false,
-          "fingerprint": "random",
-          "alpn": [
-            "h2",
-            "http/1.1"
-          ]
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "d1-au.cloud-cdn.xyz",
+          "fingerprint": "firefox",
+          "publicKey": "V-6tk21giXjug4ZXwpAhT4aXHjsXYwkgznT4dQEc9Aw",
+          "shortId": "48d6ed723454f6db",
+          "spiderX": "/",
+          "show": false
         },
         "sockopt": {
           "mark": 255,
@@ -114,12 +114,106 @@
             }
           ]
         }
+      }
+    },
+    {
+      "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "117.55.194.76",
+            "port": 443,
+            "users": [
+              {
+                "id": "e5544327-834c-455a-9db5-2454c788fa17",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
       },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "d1-au.cloud-cdn.xyz",
+          "fingerprint": "edge",
+          "publicKey": "V-6tk21giXjug4ZXwpAhT4aXHjsXYwkgznT4dQEc9Aw",
+          "shortId": "48d6ed723454f6db",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-2",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "api.mediapereval.cc",
+            "port": 443,
+            "users": [
+              {
+                "id": "082f5694-9019-4110-b67b-8125dbb9bab8",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "api.mediapereval.cc",
+          "fingerprint": "qq",
+          "publicKey": "r5WB5FnSCt4eeBC1FJMfkWHbzsMuabo0Rc6wuAhlZUs",
+          "shortId": "a8",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
       }
     },
     {
