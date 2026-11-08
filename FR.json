@@ -72,48 +72,39 @@
       "settings": {
         "vnext": [
           {
-            "address": "yoni.dobryak.online",
+            "address": "5.129.197.49",
             "port": 443,
             "users": [
               {
-                "id": "3c821552-97f0-42d1-bb1a-adc67a637d9e",
+                "id": "4cabcd59-a405-4c00-96f5-03507e1e28fa",
                 "encryption": "none",
-                "level": 0,
-                "flow": "xtls-rprx-vision"
+                "level": 0
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "tcp",
-        "security": "reality",
-        "realitySettings": {
-          "serverName": "ebay.de",
-          "fingerprint": "chrome",
-          "publicKey": "r0DQs82BcdfowCDyVJ05lRNuMarpjEJfl5a14La6ZW4",
-          "shortId": "",
-          "spiderX": "/",
-          "show": false
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
+        "network": "grpc",
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "orviko.xyz",
+          "allowInsecure": false,
+          "fingerprint": "firefox",
+          "alpn": [
+            "h2",
+            "http/1.1"
           ]
+        },
+        "grpcSettings": {
+          "serviceName": "glush.de3.v1"
         }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
       }
     },
     {
