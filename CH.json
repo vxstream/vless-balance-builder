@@ -72,42 +72,102 @@
       "settings": {
         "vnext": [
           {
-            "address": "46.28.67.211",
+            "address": "85.192.56.61",
             "port": 443,
             "users": [
               {
-                "id": "f8cb3c89-32af-4255-bebc-d90aad175069",
+                "id": "1b487f79-6b87-4971-863c-526bd31abd44",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
         ]
       },
       "streamSettings": {
-        "network": "grpc",
+        "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "roa.kosmosapp.net",
-          "fingerprint": "firefox",
-          "publicKey": "pR39Vv5qhk8r6akOicoy6mMs4-ppSWUez8MyAXG7wwQ",
-          "shortId": "27350908de933e09",
+          "serverName": "85.192.56.61.sslip.io",
+          "fingerprint": "safari",
+          "publicKey": "zvOXkaCzQIFA5H6_gpK2_IMDnkwBkw8nch5AODNsAiY",
+          "shortId": "88086e66870f03e6",
           "spiderX": "/",
           "show": false
         },
-        "grpcSettings": {
-          "serviceName": "neurex"
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "85.192.56.61",
+            "port": 443,
+            "users": [
+              {
+                "id": "1b487f79-6b87-4971-863c-526bd31abd44",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "85.192.56.61.sslip.io",
+          "fingerprint": "firefox",
+          "publicKey": "zvOXkaCzQIFA5H6_gpK2_IMDnkwBkw8nch5AODNsAiY",
+          "shortId": "88086e66870f03e6",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -162,7 +222,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -217,7 +277,7 @@
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -270,7 +330,7 @@
       }
     },
     {
-      "tag": "vless-4",
+      "tag": "vless-5",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -323,7 +383,7 @@
       }
     },
     {
-      "tag": "vless-5",
+      "tag": "vless-6",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -376,7 +436,7 @@
       }
     },
     {
-      "tag": "vless-6",
+      "tag": "vless-7",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -409,59 +469,6 @@
           "path": "/platform103",
           "headers": {
             "Host": "platform103.halalkhor.info"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-7",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "platform109.golnamakcert.top",
-            "port": 80,
-            "users": [
-              {
-                "id": "e13cf851-b4fd-413b-8d49-146e6eb8e5d4",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/platform109",
-          "headers": {
-            "Host": "platform109.halalkhor.info"
           }
         },
         "sockopt": {
@@ -549,6 +556,59 @@
       "settings": {
         "vnext": [
           {
+            "address": "platform109.golnamakcert.top",
+            "port": 80,
+            "users": [
+              {
+                "id": "e13cf851-b4fd-413b-8d49-146e6eb8e5d4",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/platform109",
+          "headers": {
+            "Host": "platform109.halalkhor.info"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-10",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "103.119.18.253",
             "port": 443,
             "users": [
@@ -594,7 +654,7 @@
       }
     },
     {
-      "tag": "vless-10",
+      "tag": "vless-11",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -647,7 +707,7 @@
       }
     },
     {
-      "tag": "vless-11",
+      "tag": "vless-12",
       "protocol": "vless",
       "settings": {
         "vnext": [
