@@ -72,13 +72,14 @@
       "settings": {
         "vnext": [
           {
-            "address": "84.32.54.237",
+            "address": "45.151.101.219",
             "port": 443,
             "users": [
               {
-                "id": "a30903dc-1bf0-4be5-8b1b-603a3a56211c",
+                "id": "24e3a924-fc4b-4e3f-98a8-85d506d530f9",
                 "encryption": "none",
-                "level": 0
+                "level": 0,
+                "flow": "xtls-rprx-vision"
               }
             ]
           }
@@ -88,10 +89,10 @@
         "network": "tcp",
         "security": "reality",
         "realitySettings": {
-          "serverName": "rly-gw-cfg.galioncc.com",
+          "serverName": "chexi.serverslocal.ru",
           "fingerprint": "firefox",
-          "publicKey": "drl7nndYdfzZY1aQ0eUAWmNV0nsHig2uDnu9siy9biQ",
-          "shortId": "868419504747f6de",
+          "publicKey": "zvOXkaCzQIFA5H6_gpK2_IMDnkwBkw8nch5AODNsAiY",
+          "shortId": "88086e66870f03e6",
           "spiderX": "/",
           "show": false
         },
@@ -113,16 +114,60 @@
             }
           ]
         }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
       }
     },
     {
       "tag": "vless-1",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.151.101.219",
+            "port": 443,
+            "users": [
+              {
+                "id": "24e3a924-fc4b-4e3f-98a8-85d506d530f9",
+                "encryption": "none",
+                "level": 0,
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "serverName": "chexi.serverslocal.ru",
+          "fingerprint": "safari",
+          "publicKey": "zvOXkaCzQIFA5H6_gpK2_IMDnkwBkw8nch5AODNsAiY",
+          "shortId": "88086e66870f03e6",
+          "spiderX": "/",
+          "show": false
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tag": "vless-2",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -177,7 +222,7 @@
       }
     },
     {
-      "tag": "vless-2",
+      "tag": "vless-3",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -232,7 +277,7 @@
       }
     },
     {
-      "tag": "vless-3",
+      "tag": "vless-4",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -285,7 +330,7 @@
       }
     },
     {
-      "tag": "vless-4",
+      "tag": "vless-5",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -338,7 +383,7 @@
       }
     },
     {
-      "tag": "vless-5",
+      "tag": "vless-6",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -391,7 +436,7 @@
       }
     },
     {
-      "tag": "vless-6",
+      "tag": "vless-7",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -424,59 +469,6 @@
           "path": "/platform103",
           "headers": {
             "Host": "platform103.halalkhor.info"
-          }
-        },
-        "sockopt": {
-          "mark": 255,
-          "tcpFastOpen": true,
-          "tcpKeepAliveIdle": 100,
-          "tcpNoDelay": true,
-          "fragment": {
-            "packets": "tlshello",
-            "length": "100-200",
-            "interval": "10-20"
-          },
-          "noises": [
-            {
-              "type": "rand",
-              "packet": "10-20",
-              "delay": "5-10"
-            }
-          ]
-        }
-      },
-      "mux": {
-        "enabled": true,
-        "concurrency": 8,
-        "xudpConcurrency": 16,
-        "xudpProxyUDP310": true
-      }
-    },
-    {
-      "tag": "vless-7",
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "platform109.golnamakcert.top",
-            "port": 80,
-            "users": [
-              {
-                "id": "e13cf851-b4fd-413b-8d49-146e6eb8e5d4",
-                "encryption": "none",
-                "level": 0
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "security": "none",
-        "wsSettings": {
-          "path": "/platform109",
-          "headers": {
-            "Host": "platform109.halalkhor.info"
           }
         },
         "sockopt": {
@@ -564,6 +556,59 @@
       "settings": {
         "vnext": [
           {
+            "address": "platform109.golnamakcert.top",
+            "port": 80,
+            "users": [
+              {
+                "id": "e13cf851-b4fd-413b-8d49-146e6eb8e5d4",
+                "encryption": "none",
+                "level": 0
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "none",
+        "wsSettings": {
+          "path": "/platform109",
+          "headers": {
+            "Host": "platform109.halalkhor.info"
+          }
+        },
+        "sockopt": {
+          "mark": 255,
+          "tcpFastOpen": true,
+          "tcpKeepAliveIdle": 100,
+          "tcpNoDelay": true,
+          "fragment": {
+            "packets": "tlshello",
+            "length": "100-200",
+            "interval": "10-20"
+          },
+          "noises": [
+            {
+              "type": "rand",
+              "packet": "10-20",
+              "delay": "5-10"
+            }
+          ]
+        }
+      },
+      "mux": {
+        "enabled": true,
+        "concurrency": 8,
+        "xudpConcurrency": 16,
+        "xudpProxyUDP310": true
+      }
+    },
+    {
+      "tag": "vless-10",
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
             "address": "103.119.18.253",
             "port": 443,
             "users": [
@@ -609,7 +654,7 @@
       }
     },
     {
-      "tag": "vless-10",
+      "tag": "vless-11",
       "protocol": "vless",
       "settings": {
         "vnext": [
@@ -662,7 +707,7 @@
       }
     },
     {
-      "tag": "vless-11",
+      "tag": "vless-12",
       "protocol": "vless",
       "settings": {
         "vnext": [
